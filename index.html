@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每周交割复盘</title>
+    <style>
+        :root {
+            --bg: #f4efe6;
+            --panel: rgba(255, 252, 247, 0.94);
+            --line: #d6c9b5;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --accent: #9a3412;
+            --accent-soft: rgba(154, 52, 18, 0.12);
+            --shadow: 0 20px 40px rgba(31, 41, 55, 0.08);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            color: var(--text);
+            background:
+                linear-gradient(180deg, rgba(154, 52, 18, 0.08), transparent 260px),
+                linear-gradient(135deg, #f7f1e7, #efe4d6);
+        }
+
+        .shell {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 34px 22px 46px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 28px;
+            align-items: start;
+            margin-bottom: 26px;
+        }
+
+        .hero h1 {
+            margin: 0 0 12px;
+            font-size: clamp(38px, 5vw, 62px);
+            line-height: 1.02;
+            letter-spacing: 0;
+            font-weight: 800;
+        }
+
+        .hero p {
+            margin: 0;
+            max-width: 760px;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .hero-side {
+            display: grid;
+            gap: 12px;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .metric {
+            background: var(--panel);
+            border: 1px solid rgba(214, 201, 181, 0.95);
+            border-radius: 8px;
+            padding: 14px 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .metric .label {
+            color: var(--muted);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .metric .value {
+            margin-top: 6px;
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid rgba(214, 201, 181, 0.95);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .panel-head {
+            padding: 20px 22px 14px;
+            border-bottom: 1px solid rgba(214, 201, 181, 0.95);
+        }
+
+        .panel-head h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .panel-head p {
+            margin: 8px 0 0;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .panel-body {
+            padding: 18px 22px 22px;
+        }
+
+        .year-block {
+            display: grid;
+            gap: 14px;
+        }
+
+        .year-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            width: fit-content;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .review-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .review-link {
+            display: grid;
+            gap: 6px;
+            padding: 14px 16px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.74);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+        }
+
+        .review-link:hover {
+            transform: translateY(-1px);
+            border-color: rgba(154, 52, 18, 0.45);
+            background: rgba(255, 255, 255, 0.96);
+        }
+
+        .review-link strong {
+            font-size: 16px;
+        }
+
+        .review-link span {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .notes {
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 920px) {
+            .hero,
+            .metric-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .shell {
+                padding: 24px 16px 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <section class="hero">
+            <div>
+                <h1>每周交割复盘</h1>
+                <p>把每周交易结果、逐日联动复盘、账户收益曲线、重点走势图和交易纪律收进同一套周报结构里。根目录负责周列表，具体某一周的复盘单独放进日期子页面，后面每周只要继续追加一页就行。</p>
+            </div>
+            <div class="hero-side">
+                <div class="metric-grid">
+                    <div class="metric">
+                        <div class="label">Weeks</div>
+                        <div class="value">1</div>
+                    </div>
+                    <div class="metric">
+                        <div class="label">Latest</div>
+                        <div class="value">2026.04.20</div>
+                    </div>
+                    <div class="metric">
+                        <div class="label">Review Type</div>
+                        <div class="value">A股交割复盘</div>
+                    </div>
+                    <div class="metric">
+                        <div class="label">Structure</div>
+                        <div class="value">周列表 + 子页</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-head">
+                <h2>周度归档</h2>
+                <p>这里维护每一周的复盘入口。当前先收录 2026 年 4 月 20 日到 4 月 24 日这一周，后续直接按同样格式继续往下追加。</p>
+            </div>
+            <div class="panel-body">
+                <div class="year-block">
+                    <div class="year-label">2026</div>
+                    <div class="review-list">
+                        <a class="review-link" href="./2026-04-20_2026-04-24/">
+                            <strong>2026.04.20 - 2026.04.24</strong>
+                            <span>本周交割复盘：逐日联动复盘、重点走势图、账户收益曲线、KISS 反思、交易纪律。</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="notes">子页面采用独立目录，后续每周新增时只需要复制这一层级结构并更新列表入口。</div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

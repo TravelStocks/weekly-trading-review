@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026.05.08-2026.05.16 交割复盘</title>
+  <style>
+    :root {
+      --bg:#f6f7f8; --panel:#ffffff; --ink:#1c2530; --muted:#667085; --line:#dfe4ea;
+      --soft:#eef2f5; --accent:#c2412d; --accent-soft:#fff1ed; --up:#14845f; --down:#b4232f;
+      --warn:#b76305; --shadow:0 18px 44px rgba(28,37,48,.08); --radius:12px;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:linear-gradient(180deg,#f7f8fa 0%,#eef2f5 100%); font-family:"Avenir Next","PingFang SC","Noto Sans SC","Microsoft YaHei",Arial,sans-serif; }
+    a { color:inherit; }
+    .shell { width:min(1480px, calc(100vw - 24px)); margin:0 auto; padding:18px 0 48px; display:grid; grid-template-columns:248px minmax(0,1fr); gap:18px; }
+    .side { position:sticky; top:14px; align-self:start; background:rgba(255,255,255,.9); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px; display:grid; gap:10px; }
+    .side h2 { margin:0 0 4px; font-size:20px; }
+    .side a { text-decoration:none; padding:10px 12px; border-radius:8px; color:var(--muted); border:1px solid transparent; }
+    .side a:hover { color:var(--ink); background:var(--soft); border-color:var(--line); }
+    .page { display:grid; grid-template-columns:minmax(0,1fr); gap:18px; min-width:0; }
+    .page > * { width:100%; max-width:100%; min-width:0; }
+    .hero,.panel,.metric,.stock-card,.day-card,.kiss-card,.kiss-day { background:rgba(255,255,255,.94); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); min-width:0; }
+    .hero { padding:28px; display:grid; grid-template-columns:1.25fr .75fr; gap:24px; align-items:stretch; }
+    .label { display:inline-flex; width:max-content; color:var(--accent); background:var(--accent-soft); padding:7px 10px; border-radius:999px; font-size:12px; font-weight:700; }
+    h1,h2,h3,p { margin-top:0; }
+    h1 { margin:14px 0 12px; font-size:clamp(34px,4vw,54px); line-height:1.06; letter-spacing:0; }
+    h2 { font-size:24px; letter-spacing:0; margin-bottom:8px; }
+    h3 { letter-spacing:0; }
+    p,li { color:var(--muted); line-height:1.72; }
+    .hero p { font-size:16px; max-width:780px; }
+    .hero-side { display:grid; gap:12px; }
+    .metric-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+    .metric { padding:16px; min-height:112px; display:grid; align-content:space-between; }
+    .metric span,.metric small { color:var(--muted); font-size:12px; line-height:1.5; }
+    .metric strong { font-size:24px; }
+    .panel { padding:22px; overflow:hidden; }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .three-col { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    .takeaways { padding-left:20px; }
+    .pos { color:var(--up); } .neg { color:var(--down); } .warn { color:var(--warn); }
+    .bar-list { display:grid; gap:12px; }
+    .bar-meta { display:flex; justify-content:space-between; gap:12px; align-items:baseline; }
+    .bar-track { height:10px; background:var(--soft); border-radius:999px; overflow:hidden; }
+    .bar-track span { display:block; height:100%; border-radius:inherit; background:var(--up); }
+    .bar-track span.neg { background:var(--down); }
+    .bar-row p { margin:6px 0 0; font-size:12px; }
+    .mini-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
+    .mini-grid span { background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:10px; color:var(--muted); font-size:13px; }
+    .mini-grid b { display:block; color:var(--ink); margin-top:4px; }
+    .day-list,.stock-grid,.kiss-grid,.kiss-daily { display:grid; gap:14px; }
+    .day-card,.stock-card,.kiss-card,.kiss-day { padding:18px; }
+    .day-head,.stock-top { display:flex; justify-content:space-between; gap:14px; align-items:flex-start; }
+    .chip { display:inline-flex; padding:7px 10px; border-radius:999px; background:#eef2ff; color:#344054; font-size:12px; font-weight:700; }
+    .kiss-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+    .kiss-card h3 { margin-bottom:8px; }
+    .kiss-day p { margin-bottom:8px; }
+    .kiss-day b { display:inline-flex; min-width:72px; color:var(--ink); }
+    details { border:1px solid var(--line); border-radius:var(--radius); background:#fff; overflow:hidden; min-width:0; }
+    summary { cursor:pointer; padding:16px 18px; font-weight:700; min-height:48px; }
+    .table-wrap { width:100%; max-width:100%; overflow:auto; border-top:1px solid var(--line); }
+    table { width:100%; border-collapse:collapse; min-width:980px; font-size:13px; }
+    th,td { padding:10px 11px; border-bottom:1px solid var(--line); text-align:left; white-space:nowrap; }
+    th { color:var(--muted); background:#f8fafc; position:sticky; top:0; }
+    td:nth-child(n+6), th:nth-child(n+6) { text-align:right; }
+    .side.buy { color:var(--down); font-weight:700; } .side.sell { color:#1d4ed8; font-weight:700; }
+    .source { font-size:12px; color:var(--muted); }
+    @media (max-width:1120px) { .shell { grid-template-columns:1fr; } .side { position:static; grid-template-columns:repeat(3,minmax(0,1fr)); } .side h2 { grid-column:1/-1; } .hero,.two-col,.kiss-grid { grid-template-columns:1fr; } }
+    @media (max-width:720px) { .shell { width:min(100vw - 16px,1480px); } .hero,.panel { padding:18px; } .metric-grid,.three-col,.mini-grid { grid-template-columns:1fr; } .side { grid-template-columns:1fr; } h1 { font-size:34px; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav class="side" aria-label="周复盘导航">
+      <h2>本周导航</h2>
+      <a href="../index.html">返回首页</a>
+      <a href="#top">本周总览</a>
+      <a href="#account">实盘口径</a>
+      <a href="#discipline">交易纪律</a>
+      <a href="#kiss">KISS 反思</a>
+      <a href="#daily">逐日复盘</a>
+      <a href="#stocks">个股拆解</a>
+      <a href="#trades">成交明细</a>
+    </nav>
+    <div class="page">
+      <section class="hero" id="top">
+        <div>
+          <span class="label">2026.05.08 - 2026.05.16</span>
+          <h1>高仓位连续回撤周</h1>
+          <p>本周交割单共 37 笔，涉及 9 只。账户实盘口径累计 -4,482.26，复利收益 -14.49%，平均仓位 79.1%。交割单可闭环部分为 -1,830.54，但宝光股份属于周前持仓卖出，缺少周前成本，未纳入已闭环盈亏。</p>
+        </div>
+        <div class="hero-side">
+          <article class="metric"><span>实盘累计</span><strong class="neg">-4,482.26</strong><small>来自“全年每日盈利拆解”</small></article>
+          <article class="metric"><span>已闭环可核算</span><strong class="neg">-1,830.54</strong><small>不含周前持仓宝光股份</small></article>
+          <article class="metric"><span>平均仓位</span><strong class="warn">79.1%</strong><small>5/13 最高 96.1%</small></article>
+        </div>
+      </section>
+
+      <section class="metric-grid" aria-label="核心指标">
+        <article class="metric"><span>成交笔数</span><strong class="">37 笔</strong><small>买入 27 / 卖出 10</small></article>
+        <article class="metric"><span>涉及标的</span><strong class="">9 只</strong><small>纪律上限 2-5 只，已超</small></article>
+        <article class="metric"><span>成交额</span><strong class="">157,165.00</strong><small>买卖成交金额合计</small></article>
+        <article class="metric"><span>费用税费</span><strong class="">225.13</strong><small>手续费 + 印花税</small></article>
+      </section>
+
+      <section class="panel" id="account">
+        <h2>账户收益曲线</h2>
+        <p>这条线按 Google Sheet 里的“当前总金额”绘制，比交割单 FIFO 更接近真实体感。本周从 29,995.99 走到 26,545.73，周四是最大回撤日。</p>
+        
+    <svg viewBox="0 0 920 260" role="img" aria-label="本周账户权益曲线">
+      <defs><linearGradient id="curveFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="rgba(20,132,95,.22)"/><stop offset="100%" stop-color="rgba(20,132,95,.02)"/></linearGradient></defs>
+      <rect x="0" y="0" width="920" height="260" fill="transparent"/>
+      <line x1="42.0" x2="42.0" y1="34" y2="226" stroke="rgba(28,37,48,.07)" stroke-dasharray="4 6"/><line x1="209.2" x2="209.2" y1="34" y2="226" stroke="rgba(28,37,48,.07)" stroke-dasharray="4 6"/><line x1="376.4" x2="376.4" y1="34" y2="226" stroke="rgba(28,37,48,.07)" stroke-dasharray="4 6"/><line x1="543.6" x2="543.6" y1="34" y2="226" stroke="rgba(28,37,48,.07)" stroke-dasharray="4 6"/><line x1="710.8" x2="710.8" y1="34" y2="226" stroke="rgba(28,37,48,.07)" stroke-dasharray="4 6"/><line x1="878.0" x2="878.0" y1="34" y2="226" stroke="rgba(28,37,48,.07)" stroke-dasharray="4 6"/>
+      <path d="M 42.0 62.2 L 209.2 34.0 L 376.4 62.4 L 543.6 86.1 L 710.8 183.1 L 878.0 226.0 L 878.0 226.0 L 42.0 226.0 Z" fill="url(#curveFill)"/>
+      <path d="M 42.0 62.2 L 209.2 34.0 L 376.4 62.4 L 543.6 86.1 L 710.8 183.1 L 878.0 226.0" fill="none" stroke="#14845f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <g><circle cx="42.0" cy="62.2" r="5.5" fill="#b4232f" stroke="#fff" stroke-width="2"/><text x="42.0" y="50.2" text-anchor="middle" font-size="12" fill="#1c2530">-1,032.00</text><text x="42.0" y="252" text-anchor="middle" font-size="12" fill="#667085">05-08</text></g><g><circle cx="209.2" cy="34.0" r="5.5" fill="#14845f" stroke="#fff" stroke-width="2"/><text x="209.2" y="22.0" text-anchor="middle" font-size="12" fill="#1c2530">+593.98</text><text x="209.2" y="252" text-anchor="middle" font-size="12" fill="#667085">05-11</text></g><g><circle cx="376.4" cy="62.4" r="5.5" fill="#b4232f" stroke="#fff" stroke-width="2"/><text x="376.4" y="50.4" text-anchor="middle" font-size="12" fill="#1c2530">-598.17</text><text x="376.4" y="252" text-anchor="middle" font-size="12" fill="#667085">05-12</text></g><g><circle cx="543.6" cy="86.1" r="5.5" fill="#b4232f" stroke="#fff" stroke-width="2"/><text x="543.6" y="74.1" text-anchor="middle" font-size="12" fill="#1c2530">-499.07</text><text x="543.6" y="252" text-anchor="middle" font-size="12" fill="#667085">05-13</text></g><g><circle cx="710.8" cy="183.1" r="5.5" fill="#b4232f" stroke="#fff" stroke-width="2"/><text x="710.8" y="171.1" text-anchor="middle" font-size="12" fill="#1c2530">-2,043.00</text><text x="710.8" y="252" text-anchor="middle" font-size="12" fill="#667085">05-14</text></g><g><circle cx="878.0" cy="226.0" r="5.5" fill="#b4232f" stroke="#fff" stroke-width="2"/><text x="878.0" y="214.0" text-anchor="middle" font-size="12" fill="#1c2530">-904.00</text><text x="878.0" y="252" text-anchor="middle" font-size="12" fill="#667085">05-15</text></g>
+    </svg>
+      </section>
+
+      <section class="two-col">
+        <article class="panel">
+          <h2>一眼看懂</h2>
+          <ul class="takeaways">
+            <li>本周不是没有看懂主线，而是“看懂后执行不够干净”：通鼎互联贡献明确，但后续华电辽能、大唐电信把收益吞回去。</li>
+            <li>实盘连续四个交易日亏损，5/14 单日 -2,043.00 是整周情绪和仓位的拐点。</li>
+            <li>标的数 9 只，已经超过你本周复盘里写的 2-5 只持仓纪律，注意力被明显摊薄。</li>
+            <li>华电辽能 5/15 先卖出 900 股又买回 900 股，是“止损后立刻打回同等仓位”的典型问题。</li>
+            <li>宝光股份卖出无法精确归因，因为本周交割单缺周前成本；后续每周最好补充周初持仓成本。</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h2>闭环贡献</h2>
+          <p>只统计本周买入并卖出的部分，避免把未知成本算成确定盈亏。</p>
+          <div class="bar-list">
+        <div class="bar-row">
+          <div class="bar-meta"><span>通鼎互联 002491</span><strong class="pos">+1,600.89</strong></div>
+          <div class="bar-track"><span class="pos" style="width:100.0%"></span></div>
+          
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-meta"><span>花王股份 603007</span><strong class="neg">-38.30</strong></div>
+          <div class="bar-track"><span class="neg" style="width:2.4%"></span></div>
+          
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-meta"><span>大业股份 603278</span><strong class="neg">-161.63</strong></div>
+          <div class="bar-track"><span class="neg" style="width:10.1%"></span></div>
+          
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-meta"><span>大唐发电 601991</span><strong class="neg">-167.77</strong></div>
+          <div class="bar-track"><span class="neg" style="width:10.5%"></span></div>
+          
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-meta"><span>华电能源 600726</span><strong class="neg">-207.03</strong></div>
+          <div class="bar-track"><span class="neg" style="width:12.9%"></span></div>
+          
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-meta"><span>大连热电 600719</span><strong class="neg">-449.60</strong></div>
+          <div class="bar-track"><span class="neg" style="width:28.1%"></span></div>
+          
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-meta"><span>大唐电信 600198</span><strong class="neg">-1,139.29</strong></div>
+          <div class="bar-track"><span class="neg" style="width:71.2%"></span></div>
+          
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-meta"><span>华电辽能 600396</span><strong class="neg">-1,267.81</strong></div>
+          <div class="bar-track"><span class="neg" style="width:79.2%"></span></div>
+          
+        </div></div>
+        </article>
+      </section>
+
+      <section class="two-col">
+        <article class="panel">
+          <h2>账户当日收益</h2>
+          <div class="bar-list">
+        <div class="bar-row">
+          <div class="bar-meta"><span>05-08 · 累计 -1,032.00</span><strong class="neg">-1,032.00</strong></div>
+          <div class="bar-track"><span class="neg" style="width:50.5%"></span></div>
+          <p>万邦德事件提醒：业绩风险要提前规避。</p>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-meta"><span>05-11 · 累计 -438.02</span><strong class="pos">+593.98</strong></div>
+          <div class="bar-track"><span class="pos" style="width:29.1%"></span></div>
+          <p>主线判断较清楚，但核心标的执行仍不够坚决。</p>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-meta"><span>05-12 · 累计 -1,036.19</span><strong class="neg">-598.17</strong></div>
+          <div class="bar-track"><span class="neg" style="width:29.3%"></span></div>
+          <p>好票没拿住，补涨龙炸板下砸，回撤开始放大。</p>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-meta"><span>05-13 · 累计 -1,535.26</span><strong class="neg">-499.07</strong></div>
+          <div class="bar-track"><span class="neg" style="width:24.4%"></span></div>
+          <p>仓位抬高，但收益没有跟上，风险暴露增加。</p>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-meta"><span>05-14 · 累计 -3,578.26</span><strong class="neg">-2,043.00</strong></div>
+          <div class="bar-track"><span class="neg" style="width:100.0%"></span></div>
+          <p>本周最大回撤日，华电辽能与大唐电信集中拖累。</p>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-meta"><span>05-15 · 累计 -4,482.26</span><strong class="neg">-904.00</strong></div>
+          <div class="bar-track"><span class="neg" style="width:44.2%"></span></div>
+          <p>华电辽能早盘止损后又回补，纪律与仓位仍需收紧。</p>
+        </div></div>
+        </article>
+        <article class="panel">
+          <h2>实际仓位</h2>
+          <div class="bar-list">
+        <div class="bar-row">
+          <div class="bar-meta"><span>05-08 · 周五</span><strong class="pos">+71.40%</strong></div>
+          <div class="bar-track"><span class="pos" style="width:71.4%"></span></div>
+          <p>万邦德事件提醒：业绩风险要提前规避。</p>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-meta"><span>05-11 · 周一</span><strong class="pos">+71.40%</strong></div>
+          <div class="bar-track"><span class="pos" style="width:71.4%"></span></div>
+          <p>主线判断较清楚，但核心标的执行仍不够坚决。</p>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-meta"><span>05-12 · 周二</span><strong class="pos">+76.00%</strong></div>
+          <div class="bar-track"><span class="pos" style="width:76.0%"></span></div>
+          <p>好票没拿住，补涨龙炸板下砸，回撤开始放大。</p>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-meta"><span>05-13 · 周三</span><strong class="pos">+96.10%</strong></div>
+          <div class="bar-track"><span class="pos" style="width:96.1%"></span></div>
+          <p>仓位抬高，但收益没有跟上，风险暴露增加。</p>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-meta"><span>05-14 · 周四</span><strong class="pos">+79.00%</strong></div>
+          <div class="bar-track"><span class="pos" style="width:79.0%"></span></div>
+          <p>本周最大回撤日，华电辽能与大唐电信集中拖累。</p>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-meta"><span>05-15 · 周五</span><strong class="pos">+80.80%</strong></div>
+          <div class="bar-track"><span class="pos" style="width:80.8%"></span></div>
+          <p>华电辽能早盘止损后又回补，纪律与仓位仍需收紧。</p>
+        </div></div>
+        </article>
+      </section>
+
+      <section class="panel" id="discipline">
+        <h2>交易纪律核查</h2>
+        <div class="three-col">
+          <article class="stock-card"><h3>标的数量超标</h3><p>本周涉及 9 只，超过复盘里写的 2-5 只范围。下周先把注意力压回主线核心。</p></article>
+          <article class="stock-card"><h3>同方向回补过快</h3><p>华电辽能止损后快速买回同等仓位，说明“卖出”还没有真正完成风险切断。</p></article>
+          <article class="stock-card"><h3>未知成本需要补齐</h3><p>周初持仓卖出会影响真实盈亏归因，下周交割单之外要补周初持仓成本表。</p></article>
+        </div>
+      </section>
+
+      <section class="panel" id="kiss">
+        <h2>KISS 反思</h2>
+        <div class="kiss-grid">
+          <article class="kiss-card"><h3>KEEP</h3><ul><li>能识别阶段主线与核心票：通鼎互联、大唐电信、华电辽能等都不是随机交易，说明盘面主线嗅觉仍在。</li><li>宝光股份早盘第一时间止盈、部分标的能果断处理，说明关键时刻有执行力。</li><li>复盘能直面错误，不把亏损简单归因给市场，而是继续拆到买点、卖点、仓位和情绪。</li></ul></article><article class="kiss-card"><h3>IMPROVE</h3><ul><li>看对和做到之间仍有距离：多次放弃主线核心，转去后排或中位杂毛，导致确定性下降。</li><li>卖点与持仓管理偏弱：强势票下杀有承接时容易一键清仓，弱势票破位时又容易硬扛。</li><li>板上风控不足，只看封单和分时强度，不够重视撤单、天量分歧、隔日资金连续性。</li></ul></article><article class="kiss-card"><h3>START</h3><ul><li>建立“预判-预案-执行”闭环：前一晚列出主线、核心标的、买卖点和失败条件。</li><li>执行“买一看四”：题材板块、个股自身、题材间 PK、同身位前后排同时过一遍。</li><li>强势核心票分批止盈，留底仓看回流；弱势杂毛一旦不及预期，直接退出。</li></ul></article><article class="kiss-card"><h3>STOP</h3><ul><li>停止尾盘盲目低吸高位杂毛，停止半路点火，坚守板上确认或核心低吸。</li><li>停止分歧日逆势博弈非主线、非龙头的中位票。</li><li>停止用主观估值去否定市场抱团核心，停止弱势连亏品种的侥幸参与。</li></ul></article>
+        </div>
+        <details>
+          <summary>展开逐日 KISS</summary>
+          <div class="kiss-daily">
+        <article class="kiss-day">
+          <h3>2026-05-08 周五</h3>
+          <p><b>Keep</b>宝光股份早盘止盈，通鼎互联板上介入贴合题材、竞价和量能逻辑。</p>
+          <p><b>Improve</b>对板块联动和高位负反馈关注不够，华电能源、万邦德类风险需要更早处理。</p>
+          <p><b>Start</b>启动板上确认、买一看四、盘中纪律提醒。</p>
+          <p><b>Stop</b>停止尾盘低吸高位杂毛，停止高位破位硬扛。</p>
+        </article>
+
+        <article class="kiss-day">
+          <h3>2026-05-11 周一</h3>
+          <p><b>Keep</b>板块轮动预判较准，能识别芯片、光通信、商业航天、电力的强弱节奏。</p>
+          <p><b>Improve</b>看对康欣新材、宝鼎科技、华电辽能等核心但临盘不够坚决。</p>
+          <p><b>Start</b>前一晚写清主线和核心标的，临盘按预案执行。</p>
+          <p><b>Stop</b>停止放弃主线核心去做后排中位杂毛。</p>
+        </article>
+
+        <article class="kiss-day">
+          <h3>2026-05-12 周二</h3>
+          <p><b>Keep</b>能看出大票抱团、小票难做，大业股份持仓定力和大唐电信题材识别在线。</p>
+          <p><b>Improve</b>强势票卖点粗糙，容易一键清仓；板上接力前对天量分歧预判不足。</p>
+          <p><b>Start</b>核心人气票执行 2-3 次分批止盈，板上介入前确认资金连续性。</p>
+          <p><b>Stop</b>停止只看分时强度，忽略主力撤单和天量抛压。</p>
+        </article>
+
+        <article class="kiss-day">
+          <h3>2026-05-13 周三</h3>
+          <p><b>Keep</b>延续对主流风格的感知，没有完全脱离大票抱团主线。</p>
+          <p><b>Improve</b>仓位升到 96.1%，但日收益继续为负，说明风险暴露先于确定性。</p>
+          <p><b>Start</b>高仓位前先问：是否主线核心、是否唯一最强、失败条件是否清楚。</p>
+          <p><b>Stop</b>停止在不具备确定性的阶段把仓位推高。</p>
+        </article>
+
+        <article class="kiss-day">
+          <h3>2026-05-14 周四</h3>
+          <p><b>Keep</b>能够在同日做出切换尝试，但缺少足够防守。</p>
+          <p><b>Improve</b>大唐电信止损、华电辽能承接都集中在早盘，回撤日没有先降风险。</p>
+          <p><b>Start</b>最大亏损日先做减法，锁住现金，再找确定性。</p>
+          <p><b>Stop</b>停止在连续负反馈中继续扩大同方向暴露。</p>
+        </article>
+
+        <article class="kiss-day">
+          <h3>2026-05-15 周五</h3>
+          <p><b>Keep</b>华电辽能早盘卖出后能识别盘中回补机会。</p>
+          <p><b>Improve</b>卖出 900 股后又分批买回 900 股，说明纪律和复盘结论没有完全约束临盘。</p>
+          <p><b>Start</b>回补必须设置更严格条件：板块回流、个股转强、仓位上限同时满足。</p>
+          <p><b>Stop</b>停止刚止损就用同等仓位快速打回去。</p>
+        </article></div>
+        </details>
+      </section>
+
+      <section class="panel" id="daily">
+        <h2>逐日联动复盘</h2>
+        <div class="day-list">
+        <article class="day-card" id="day-2026-05-08">
+          <div class="day-head"><div><h3>2026-05-08 周五</h3><p>宝光股份、华电能源、通鼎互联</p></div><strong class="neg">-1,032.00</strong></div>
+          <div class="mini-grid">
+            <span>收益率 <b class="neg">-3.33%</b></span>
+            <span>仓位 <b>71.4%</b></span>
+            <span>成交 <b>3 笔</b></span>
+            <span>买/卖 <b>2/1</b></span>
+          </div>
+          <p>万邦德事件提醒：业绩风险要提前规避。</p>
+        </article>
+        <article class="day-card" id="day-2026-05-11">
+          <div class="day-head"><div><h3>2026-05-11 周一</h3><p>通鼎互联、大业股份、华电能源</p></div><strong class="pos">+593.98</strong></div>
+          <div class="mini-grid">
+            <span>收益率 <b class="pos">+1.98%</b></span>
+            <span>仓位 <b>71.4%</b></span>
+            <span>成交 <b>3 笔</b></span>
+            <span>买/卖 <b>2/1</b></span>
+          </div>
+          <p>主线判断较清楚，但核心标的执行仍不够坚决。</p>
+        </article>
+        <article class="day-card" id="day-2026-05-12">
+          <div class="day-head"><div><h3>2026-05-12 周二</h3><p>通鼎互联、大唐电信、大业股份</p></div><strong class="neg">-598.17</strong></div>
+          <div class="mini-grid">
+            <span>收益率 <b class="neg">-1.96%</b></span>
+            <span>仓位 <b>76.0%</b></span>
+            <span>成交 <b>7 笔</b></span>
+            <span>买/卖 <b>5/2</b></span>
+          </div>
+          <p>好票没拿住，补涨龙炸板下砸，回撤开始放大。</p>
+        </article>
+        <article class="day-card" id="day-2026-05-13">
+          <div class="day-head"><div><h3>2026-05-13 周三</h3><p>大连热电、花王股份</p></div><strong class="neg">-499.07</strong></div>
+          <div class="mini-grid">
+            <span>收益率 <b class="neg">-1.67%</b></span>
+            <span>仓位 <b>96.1%</b></span>
+            <span>成交 <b>2 笔</b></span>
+            <span>买/卖 <b>2/0</b></span>
+          </div>
+          <p>仓位抬高，但收益没有跟上，风险暴露增加。</p>
+        </article>
+        <article class="day-card" id="day-2026-05-14">
+          <div class="day-head"><div><h3>2026-05-14 周四</h3><p>大连热电、华电辽能、大唐电信、大唐发电</p></div><strong class="neg">-2,043.00</strong></div>
+          <div class="mini-grid">
+            <span>收益率 <b class="neg">-6.94%</b></span>
+            <span>仓位 <b>79.0%</b></span>
+            <span>成交 <b>10 笔</b></span>
+            <span>买/卖 <b>8/2</b></span>
+          </div>
+          <p>本周最大回撤日，华电辽能与大唐电信集中拖累。</p>
+        </article>
+        <article class="day-card" id="day-2026-05-15">
+          <div class="day-head"><div><h3>2026-05-15 周五</h3><p>花王股份、大唐发电、华电辽能</p></div><strong class="neg">-904.00</strong></div>
+          <div class="mini-grid">
+            <span>收益率 <b class="neg">-3.31%</b></span>
+            <span>仓位 <b>80.8%</b></span>
+            <span>成交 <b>12 笔</b></span>
+            <span>买/卖 <b>8/4</b></span>
+          </div>
+          <p>华电辽能早盘止损后又回补，纪律与仓位仍需收紧。</p>
+        </article></div>
+      </section>
+
+      <section class="panel" id="stocks">
+        <h2>个股拆解</h2>
+        <div class="stock-grid">
+        <article class="stock-card">
+          <div class="stock-top"><div><h3>通鼎互联</h3><p>002491</p></div><span class="chip">已闭环</span></div>
+          <p>本周唯一明确大幅正贡献，来自 5/8 + 5/11 建仓、5/12 卖出。</p>
+          <div class="mini-grid">
+            <span>买入 <b>600</b></span>
+            <span>卖出 <b>600</b></span>
+            <span>成交额 <b>26,805.00</b></span>
+            <span>闭环结果 <b class="pos">+1,600.89</b></span>
+          </div>
+        </article>
+
+        <article class="stock-card">
+          <div class="stock-top"><div><h3>大唐电信</h3><p>600198</p></div><span class="chip">已闭环</span></div>
+          <p>大唐电信买入 1600 股后 5/14 全部卖出，闭环亏损较大。</p>
+          <div class="mini-grid">
+            <span>买入 <b>1600</b></span>
+            <span>卖出 <b>1600</b></span>
+            <span>成交额 <b>32,941.00</b></span>
+            <span>闭环结果 <b class="neg">-1,139.29</b></span>
+          </div>
+        </article>
+
+        <article class="stock-card">
+          <div class="stock-top"><div><h3>宝光股份</h3><p>600379</p></div><span class="chip">周前持仓卖出</span></div>
+          <p>宝光股份 5/8 卖出 1200 股，但周前成本不在本周交割单内，未纳入闭环盈亏。</p>
+          <div class="mini-grid">
+            <span>买入 <b>0</b></span>
+            <span>卖出 <b>1200</b></span>
+            <span>成交额 <b>21,120.00</b></span>
+            <span>闭环结果 <b class="pos">成本未知</b></span>
+          </div>
+        </article>
+
+        <article class="stock-card">
+          <div class="stock-top"><div><h3>华电辽能</h3><p>600396</p></div><span class="chip">部分留仓</span></div>
+          <p>5/14 建仓 900 股后 5/15 止损，同日又买回 900 股，纪律冲突最明显。</p>
+          <div class="mini-grid">
+            <span>买入 <b>1800</b></span>
+            <span>卖出 <b>900</b></span>
+            <span>成交额 <b>47,217.00</b></span>
+            <span>闭环结果 <b class="neg">-1,267.81</b></span>
+          </div>
+        </article>
+
+        <article class="stock-card">
+          <div class="stock-top"><div><h3>大连热电</h3><p>600719</p></div><span class="chip">已闭环</span></div>
+          <p>按本周可见成交做 FIFO 闭环复盘。</p>
+          <div class="mini-grid">
+            <span>买入 <b>300</b></span>
+            <span>卖出 <b>300</b></span>
+            <span>成交额 <b>6,570.00</b></span>
+            <span>闭环结果 <b class="neg">-449.60</b></span>
+          </div>
+        </article>
+
+        <article class="stock-card">
+          <div class="stock-top"><div><h3>华电能源</h3><p>600726</p></div><span class="chip">已闭环</span></div>
+          <p>按本周可见成交做 FIFO 闭环复盘。</p>
+          <div class="mini-grid">
+            <span>买入 <b>500</b></span>
+            <span>卖出 <b>500</b></span>
+            <span>成交额 <b>7,985.00</b></span>
+            <span>闭环结果 <b class="neg">-207.03</b></span>
+          </div>
+        </article>
+
+        <article class="stock-card">
+          <div class="stock-top"><div><h3>大唐发电</h3><p>601991</p></div><span class="chip">已闭环</span></div>
+          <p>按本周可见成交做 FIFO 闭环复盘。</p>
+          <div class="mini-grid">
+            <span>买入 <b>200</b></span>
+            <span>卖出 <b>200</b></span>
+            <span>成交额 <b>3,092.00</b></span>
+            <span>闭环结果 <b class="neg">-167.77</b></span>
+          </div>
+        </article>
+
+        <article class="stock-card">
+          <div class="stock-top"><div><h3>花王股份</h3><p>603007</p></div><span class="chip">已闭环</span></div>
+          <p>按本周可见成交做 FIFO 闭环复盘。</p>
+          <div class="mini-grid">
+            <span>买入 <b>300</b></span>
+            <span>卖出 <b>300</b></span>
+            <span>成交额 <b>5,025.00</b></span>
+            <span>闭环结果 <b class="neg">-38.30</b></span>
+          </div>
+        </article>
+
+        <article class="stock-card">
+          <div class="stock-top"><div><h3>大业股份</h3><p>603278</p></div><span class="chip">已闭环</span></div>
+          <p>按本周可见成交做 FIFO 闭环复盘。</p>
+          <div class="mini-grid">
+            <span>买入 <b>200</b></span>
+            <span>卖出 <b>200</b></span>
+            <span>成交额 <b>6,410.00</b></span>
+            <span>闭环结果 <b class="neg">-161.63</b></span>
+          </div>
+        </article></div>
+      </section>
+
+      <section class="panel" id="method">
+        <h2>口径说明</h2>
+        <ul class="takeaways">
+          <li>“实盘口径”来自 Google Sheet 的“全年每日盈利拆解”。</li>
+          <li>“已闭环可核算”只使用本周交割单里能配对的买入和卖出，不包含周前持仓卖出。</li>
+          <li>宝光股份 5/8 卖出 1200 股缺周前成本，本页只展示卖出事实，不把它纳入闭环盈亏。</li>
+          <li>5/14 与 5/15 在“操作&情绪复盘”中没有逐日 KISS 原文，本页基于成交和账户数据做了复盘提示。</li>
+        </ul>
+      </section>
+
+      <section id="trades">
+        <details open>
+          <summary>全部成交明细</summary>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>日期</th><th>时间</th><th>代码</th><th>名称</th><th>操作</th><th>数量</th><th>均价</th><th>成交金额</th><th>费用税费</th><th>发生金额</th></tr></thead>
+              <tbody><tr><td>2026-05-08</td><td>09:25:00</td><td>600379</td><td>宝光股份</td><td><span class='side sell'>卖出</span></td><td>1200</td><td>17.600</td><td>21,120.00</td><td>15.56</td><td class='pos'>+21,104.23</td></tr>
+<tr><td>2026-05-08</td><td>09:43:05</td><td>600726</td><td>华电能源</td><td><span class='side buy'>买入</span></td><td>500</td><td>8.180</td><td>4,090.00</td><td>5.00</td><td class='neg'>-4,095.04</td></tr>
+<tr><td>2026-05-08</td><td>10:09:24</td><td>002491</td><td>通鼎互联</td><td><span class='side buy'>买入</span></td><td>500</td><td>20.660</td><td>10,330.00</td><td>5.00</td><td class='neg'>-10,335.00</td></tr>
+<tr><td>2026-05-11</td><td>09:36:00</td><td>002491</td><td>通鼎互联</td><td><span class='side buy'>买入</span></td><td>100</td><td>22.610</td><td>2,261.00</td><td>5.00</td><td class='neg'>-2,266.00</td></tr>
+<tr><td>2026-05-11</td><td>09:52:10</td><td>603278</td><td>大业股份</td><td><span class='side buy'>买入</span></td><td>200</td><td>16.400</td><td>3,280.00</td><td>5.00</td><td class='neg'>-3,285.03</td></tr>
+<tr><td>2026-05-11</td><td>14:56:59</td><td>600726</td><td>华电能源</td><td><span class='side sell'>卖出</span></td><td>500</td><td>7.790</td><td>3,895.00</td><td>6.95</td><td class='pos'>+3,888.01</td></tr>
+<tr><td>2026-05-12</td><td>09:30:21</td><td>002491</td><td>通鼎互联</td><td><span class='side sell'>卖出</span></td><td>600</td><td>23.690</td><td>14,214.00</td><td>12.11</td><td class='pos'>+14,201.89</td></tr>
+<tr><td>2026-05-12</td><td>09:34:39</td><td>600198</td><td>大唐电信</td><td><span class='side buy'>买入</span></td><td>900</td><td>10.690</td><td>9,621.00</td><td>5.00</td><td class='neg'>-9,626.10</td></tr>
+<tr><td>2026-05-12</td><td>09:49:10</td><td>600198</td><td>大唐电信</td><td><span class='side buy'>买入</span></td><td>300</td><td>10.650</td><td>3,195.00</td><td>5.00</td><td class='neg'>-3,200.03</td></tr>
+<tr><td>2026-05-12</td><td>09:49:57</td><td>600198</td><td>大唐电信</td><td><span class='side buy'>买入</span></td><td>100</td><td>10.610</td><td>1,061.00</td><td>5.00</td><td class='neg'>-1,066.01</td></tr>
+<tr><td>2026-05-12</td><td>09:52:35</td><td>600198</td><td>大唐电信</td><td><span class='side buy'>买入</span></td><td>100</td><td>10.440</td><td>1,044.00</td><td>5.00</td><td class='neg'>-1,049.01</td></tr>
+<tr><td>2026-05-12</td><td>10:32:05</td><td>600198</td><td>大唐电信</td><td><span class='side buy'>买入</span></td><td>200</td><td>10.500</td><td>2,100.00</td><td>5.00</td><td class='neg'>-2,105.02</td></tr>
+<tr><td>2026-05-12</td><td>13:48:10</td><td>603278</td><td>大业股份</td><td><span class='side sell'>卖出</span></td><td>200</td><td>15.650</td><td>3,130.00</td><td>6.56</td><td class='pos'>+3,123.40</td></tr>
+<tr><td>2026-05-13</td><td>09:37:18</td><td>600719</td><td>大连热电</td><td><span class='side buy'>买入</span></td><td>300</td><td>11.680</td><td>3,504.00</td><td>5.00</td><td class='neg'>-3,509.04</td></tr>
+<tr><td>2026-05-13</td><td>11:26:21</td><td>603007</td><td>花王股份</td><td><span class='side buy'>买入</span></td><td>300</td><td>8.420</td><td>2,526.00</td><td>5.00</td><td class='neg'>-2,531.03</td></tr>
+<tr><td>2026-05-14</td><td>09:49:23</td><td>600719</td><td>大连热电</td><td><span class='side sell'>卖出</span></td><td>300</td><td>10.220</td><td>3,066.00</td><td>6.53</td><td class='pos'>+3,059.44</td></tr>
+<tr><td>2026-05-14</td><td>09:49:38</td><td>600396</td><td>华电辽能</td><td><span class='side buy'>买入</span></td><td>200</td><td>18.060</td><td>3,612.00</td><td>5.00</td><td class='neg'>-3,617.04</td></tr>
+<tr><td>2026-05-14</td><td>09:50:26</td><td>600198</td><td>大唐电信</td><td><span class='side sell'>卖出</span></td><td>1600</td><td>9.950</td><td>15,920.00</td><td>12.96</td><td class='pos'>+15,906.88</td></tr>
+<tr><td>2026-05-14</td><td>09:51:27</td><td>600396</td><td>华电辽能</td><td><span class='side buy'>买入</span></td><td>100</td><td>18.010</td><td>1,801.00</td><td>5.00</td><td class='neg'>-1,806.02</td></tr>
+<tr><td>2026-05-14</td><td>09:51:30</td><td>600396</td><td>华电辽能</td><td><span class='side buy'>买入</span></td><td>100</td><td>18.000</td><td>1,800.00</td><td>5.00</td><td class='neg'>-1,805.02</td></tr>
+<tr><td>2026-05-14</td><td>09:51:44</td><td>600396</td><td>华电辽能</td><td><span class='side buy'>买入</span></td><td>100</td><td>18.000</td><td>1,800.00</td><td>5.00</td><td class='neg'>-1,805.02</td></tr>
+<tr><td>2026-05-14</td><td>09:51:52</td><td>600396</td><td>华电辽能</td><td><span class='side buy'>买入</span></td><td>100</td><td>18.020</td><td>1,802.00</td><td>5.00</td><td class='neg'>-1,807.02</td></tr>
+<tr><td>2026-05-14</td><td>09:52:00</td><td>600396</td><td>华电辽能</td><td><span class='side buy'>买入</span></td><td>100</td><td>17.970</td><td>1,797.00</td><td>5.00</td><td class='neg'>-1,802.02</td></tr>
+<tr><td>2026-05-14</td><td>09:54:59</td><td>600396</td><td>华电辽能</td><td><span class='side buy'>买入</span></td><td>200</td><td>17.920</td><td>3,584.00</td><td>5.00</td><td class='neg'>-3,589.04</td></tr>
+<tr><td>2026-05-14</td><td>10:10:00</td><td>601991</td><td>大唐发电</td><td><span class='side buy'>买入</span></td><td>200</td><td>8.110</td><td>1,622.00</td><td>5.00</td><td class='neg'>-1,627.02</td></tr>
+<tr><td>2026-05-15</td><td>09:32:15</td><td>603007</td><td>花王股份</td><td><span class='side sell'>卖出</span></td><td>300</td><td>8.330</td><td>2,499.00</td><td>6.25</td><td class='pos'>+2,492.73</td></tr>
+<tr><td>2026-05-15</td><td>10:43:29</td><td>601991</td><td>大唐发电</td><td><span class='side sell'>卖出</span></td><td>100</td><td>7.250</td><td>725.00</td><td>5.36</td><td class='pos'>+719.63</td></tr>
+<tr><td>2026-05-15</td><td>10:43:45</td><td>600396</td><td>华电辽能</td><td><span class='side sell'>卖出</span></td><td>900</td><td>16.640</td><td>14,976.00</td><td>12.48</td><td class='pos'>+14,963.37</td></tr>
+<tr><td>2026-05-15</td><td>10:55:10</td><td>601991</td><td>大唐发电</td><td><span class='side sell'>卖出</span></td><td>100</td><td>7.450</td><td>745.00</td><td>5.37</td><td class='pos'>+739.62</td></tr>
+<tr><td>2026-05-15</td><td>11:12:13</td><td>600396</td><td>华电辽能</td><td><span class='side buy'>买入</span></td><td>100</td><td>17.680</td><td>1,768.00</td><td>5.00</td><td class='neg'>-1,773.02</td></tr>
+<tr><td>2026-05-15</td><td>11:12:15</td><td>600396</td><td>华电辽能</td><td><span class='side buy'>买入</span></td><td>100</td><td>17.680</td><td>1,768.00</td><td>5.00</td><td class='neg'>-1,773.02</td></tr>
+<tr><td>2026-05-15</td><td>11:12:24</td><td>600396</td><td>华电辽能</td><td><span class='side buy'>买入</span></td><td>100</td><td>17.790</td><td>1,779.00</td><td>5.00</td><td class='neg'>-1,784.02</td></tr>
+<tr><td>2026-05-15</td><td>11:12:30</td><td>600396</td><td>华电辽能</td><td><span class='side buy'>买入</span></td><td>100</td><td>17.830</td><td>1,783.00</td><td>5.00</td><td class='neg'>-1,788.02</td></tr>
+<tr><td>2026-05-15</td><td>11:12:33</td><td>600396</td><td>华电辽能</td><td><span class='side buy'>买入</span></td><td>100</td><td>17.850</td><td>1,785.00</td><td>5.00</td><td class='neg'>-1,790.02</td></tr>
+<tr><td>2026-05-15</td><td>11:12:35</td><td>600396</td><td>华电辽能</td><td><span class='side buy'>买入</span></td><td>100</td><td>17.880</td><td>1,788.00</td><td>5.00</td><td class='neg'>-1,793.02</td></tr>
+<tr><td>2026-05-15</td><td>11:12:42</td><td>600396</td><td>华电辽能</td><td><span class='side buy'>买入</span></td><td>100</td><td>17.900</td><td>1,790.00</td><td>5.00</td><td class='neg'>-1,795.02</td></tr>
+<tr><td>2026-05-15</td><td>11:12:54</td><td>600396</td><td>华电辽能</td><td><span class='side buy'>买入</span></td><td>200</td><td>17.920</td><td>3,584.00</td><td>5.00</td><td class='neg'>-3,589.04</td></tr></tbody>
+            </table>
+          </div>
+        </details>
+      </section>
+      <p class="source">生成时间：2026-05-17 13:51 · 数据来源：交割单截图、Google Sheet “全年每日盈利拆解”“操作&情绪复盘”。</p>
+    </div>
+  </main>
+</body>
+</html>

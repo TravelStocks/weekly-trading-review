@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>月度 / 季度交易复盘</title>
+  <style>
+    :root{--panel:#fff;--ink:#1c2530;--muted:#667085;--line:#dfe4ea;--accent:#c2412d;--accent-soft:#fff1ed;--up:#14845f;--down:#b4232f;--warn:#b76305;--shadow:0 18px 44px rgba(28,37,48,.08);--radius:12px}
+    *{box-sizing:border-box}body{margin:0;color:var(--ink);background:linear-gradient(180deg,#f7f8fa 0%,#eef2f5 100%);font-family:"Avenir Next","PingFang SC","Noto Sans SC","Microsoft YaHei",Arial,sans-serif}
+    a{color:inherit}.shell{width:min(1180px,calc(100vw - 28px));margin:0 auto;padding:34px 0 52px;display:grid;gap:20px}.hero,.panel,.metric,.card{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero{padding:30px;display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:end}.label{display:inline-flex;width:max-content;color:var(--accent);background:var(--accent-soft);padding:7px 10px;border-radius:999px;font-size:12px;font-weight:700}
+    h1,h2,h3,p{margin-top:0;letter-spacing:0}h1{margin:14px 0 12px;font-size:clamp(36px,5vw,62px);line-height:1.05}h2{font-size:24px}p,li{color:var(--muted);line-height:1.72}
+    .metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.metric{padding:16px;min-height:104px;display:grid;align-content:space-between}.metric span,.metric small{color:var(--muted);font-size:12px}.metric strong{font-size:23px}
+    .button-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.button{display:inline-flex;justify-content:center;align-items:center;min-height:44px;padding:0 16px;border-radius:8px;background:var(--ink);color:#fff;text-decoration:none;font-weight:700}.button.secondary{background:#fff;color:var(--ink);border:1px solid var(--line)}
+    .panel{padding:24px}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}.grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .card{padding:18px;min-width:0}.card h3{margin-bottom:8px}.card p{margin-bottom:0}.chip{display:inline-flex;padding:7px 10px;border-radius:999px;background:#eef2ff;color:#344054;font-size:12px;font-weight:700;white-space:nowrap}
+    .card-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.mini{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:14px}.mini span{background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:9px;color:var(--muted);font-size:12px}.mini b{display:block;color:var(--ink);font-size:14px;margin-top:4px;overflow-wrap:anywhere}.muted{color:var(--muted)}.warn{color:var(--warn)}
+    .timeline{display:grid;gap:10px}.timeline li{padding:12px 14px;background:#f8fafc;border:1px solid var(--line);border-radius:8px;list-style:none}.timeline ul{margin:0;padding:0}
+    @media(max-width:920px){.hero,.two-col,.grid-4,.grid-3{grid-template-columns:1fr}.metrics,.mini{grid-template-columns:1fr}.shell{width:min(100vw - 16px,1180px);padding-top:22px}.hero,.panel{padding:18px}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <span class="label">Monthly / Quarterly Trading Review</span>
+        <h1>月度 / 季度交易复盘</h1>
+        <p>月度负责把每周复盘压缩成账户节奏、交易问题和规则变化；季度负责判断模式、仓位、风控是否真的推动账户曲线变好。</p>
+        <div class="button-row">
+          <a class="button" href="../weekly-trading-review/">周度主页</a>
+          <a class="button secondary" href="../yearly-trading-review/">年度主页</a>
+          <a class="button secondary" href="../index.html">总首页</a>
+        </div>
+      </div>
+      <div class="metrics">
+        <article class="metric"><span>月度结构</span><strong>12 个月</strong><small>每月汇总周复盘</small></article>
+        <article class="metric"><span>季度结构</span><strong>Q1-Q4</strong><small>检查体系进化</small></article>
+        <article class="metric"><span>当前状态</span><strong>框架版</strong><small>等月度数据后填充</small></article>
+        <article class="metric"><span>核心输出</span><strong>规则迭代</strong><small>把经验变成下月纪律</small></article>
+      </div>
+    </section>
+
+    <section class="two-col">
+      <article class="panel">
+        <h2>月度复盘要回答什么</h2>
+        <ul>
+          <li>本月账户曲线是主升、震荡、回撤，还是修复。</li>
+          <li>盈利主要来自哪些模式，亏损主要来自哪些错误。</li>
+          <li>仓位是否和市场周期匹配，是否有超配退潮期的问题。</li>
+          <li>本月新增的交易规则，是否已经能落到下月盘前清单。</li>
+        </ul>
+      </article>
+      <article class="panel">
+        <h2>季度复盘要回答什么</h2>
+        <ul>
+          <li>三个月后，龙头识别、买卖点、仓位分配是否变稳定。</li>
+          <li>季度最大回撤由什么触发，是否属于可预防错误。</li>
+          <li>赚钱阶段能否放大，亏钱阶段能否缩短。</li>
+          <li>下一季度要保留、停止、开始执行哪些固定动作。</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>月度复盘框架</h2>
+      <div class="grid-4">
+        <article class="card"><div class="card-head"><h3>1 月</h3><span class="chip">待补</span></div><p>年度开局，建立收益基准与初始规则。</p><div class="mini"><span>收益率 <b>待填</b></span><span>最大回撤 <b>待填</b></span></div></article>
+        <article class="card"><div class="card-head"><h3>2 月</h3><span class="chip">待补</span></div><p>春节前后流动性与情绪节奏复盘。</p><div class="mini"><span>主线 <b>待填</b></span><span>核心错误 <b>待填</b></span></div></article>
+        <article class="card"><div class="card-head"><h3>3 月</h3><span class="chip">待补</span></div><p>一季度收官，检查模式稳定性。</p><div class="mini"><span>最佳交易 <b>待填</b></span><span>新规则 <b>待填</b></span></div></article>
+        <article class="card"><div class="card-head"><h3>4 月</h3><span class="chip">待补</span></div><p>衔接已有周度复盘，整理龙头与仓位规则。</p><div class="mini"><span>周报 <b>1 篇</b></span><span>状态 <b>可补</b></span></div></article>
+        <article class="card"><div class="card-head"><h3>5 月</h3><span class="chip">进行中</span></div><p>当前已有两篇周度复盘，可优先汇总成首个月度样板。</p><div class="mini"><span>周报 <b>2 篇</b></span><span>重点 <b>达实 / 华电</b></span></div></article>
+        <article class="card"><div class="card-head"><h3>6 月</h3><span class="chip">待补</span></div><p>观察新规则在下一阶段的执行质量。</p><div class="mini"><span>收益率 <b>待填</b></span><span>纪律 <b>待填</b></span></div></article>
+        <article class="card"><div class="card-head"><h3>7 月</h3><span class="chip">待补</span></div><p>半年度后的仓位和模式修正。</p><div class="mini"><span>主线 <b>待填</b></span><span>回撤 <b>待填</b></span></div></article>
+        <article class="card"><div class="card-head"><h3>8 月</h3><span class="chip">待补</span></div><p>检查高温淡季或缩量环境下的交易频率。</p><div class="mini"><span>交易次数 <b>待填</b></span><span>胜率 <b>待填</b></span></div></article>
+        <article class="card"><div class="card-head"><h3>9 月</h3><span class="chip">待补</span></div><p>三季度收官，复盘主线持续性。</p><div class="mini"><span>最佳模式 <b>待填</b></span><span>最差模式 <b>待填</b></span></div></article>
+        <article class="card"><div class="card-head"><h3>10 月</h3><span class="chip">待补</span></div><p>长假后情绪重启，检查追高和踏空焦虑。</p><div class="mini"><span>规则执行 <b>待填</b></span><span>情绪问题 <b>待填</b></span></div></article>
+        <article class="card"><div class="card-head"><h3>11 月</h3><span class="chip">待补</span></div><p>年末资金风格切换下的防守质量。</p><div class="mini"><span>防守 <b>待填</b></span><span>仓位 <b>待填</b></span></div></article>
+        <article class="card"><div class="card-head"><h3>12 月</h3><span class="chip">待补</span></div><p>全年收官，向年度复盘输送最终结论。</p><div class="mini"><span>全年结果 <b>待填</b></span><span>年度问题 <b>待填</b></span></div></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>季度复盘框架</h2>
+      <div class="grid-4">
+        <article class="card"><div class="card-head"><h3>Q1</h3><span class="chip">待补</span></div><p>建立年度起点，确认最适合自己的交易模式。</p><div class="mini"><span>收益率 <b>待填</b></span><span>核心规则 <b>待填</b></span></div></article>
+        <article class="card"><div class="card-head"><h3>Q2</h3><span class="chip">进行中</span></div><p>重点沉淀龙头辨识度、弱转强下杀、竞价加单和小题材三日游规则。</p><div class="mini"><span>已有周报 <b>3 篇</b></span><span>重点月份 <b>4-6 月</b></span></div></article>
+        <article class="card"><div class="card-head"><h3>Q3</h3><span class="chip">待补</span></div><p>验证上半年修正是否转化为更平滑的账户曲线。</p><div class="mini"><span>最大回撤 <b>待填</b></span><span>执行质量 <b>待填</b></span></div></article>
+        <article class="card"><div class="card-head"><h3>Q4</h3><span class="chip">待补</span></div><p>年末收敛交易体系，为年度复盘准备最终样本。</p><div class="mini"><span>模式稳定度 <b>待填</b></span><span>来年准则 <b>待填</b></span></div></article>
+      </div>
+    </section>
+
+    <section class="grid-3">
+      <article class="card">
+        <h3>数据清单</h3>
+        <ul>
+          <li>月初 / 月末总资产</li>
+          <li>月度收益率与收益金额</li>
+          <li>最大单日盈利和亏损</li>
+          <li>最大回撤与触发原因</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>交易清单</h3>
+        <ul>
+          <li>本月贡献最大的三笔交易</li>
+          <li>本月亏损最大的三笔交易</li>
+          <li>重复犯错次数</li>
+          <li>新增有效规则</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>待你补充</h3>
+        <ul>
+          <li>每月账户汇总表</li>
+          <li>月度操作&情绪总结</li>
+          <li>季度核心题材与代表交易</li>
+          <li>你最想固化的下月规则</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

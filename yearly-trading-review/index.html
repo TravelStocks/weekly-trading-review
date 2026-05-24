@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>年度交易复盘</title>
+  <style>
+    :root{--panel:#fff;--ink:#1c2530;--muted:#667085;--line:#dfe4ea;--accent:#c2412d;--accent-soft:#fff1ed;--up:#14845f;--down:#b4232f;--shadow:0 18px 44px rgba(28,37,48,.08);--radius:12px}
+    *{box-sizing:border-box}body{margin:0;color:var(--ink);background:linear-gradient(180deg,#f7f8fa 0%,#eef2f5 100%);font-family:"Avenir Next","PingFang SC","Noto Sans SC","Microsoft YaHei",Arial,sans-serif}
+    a{color:inherit}.shell{width:min(1180px,calc(100vw - 28px));margin:0 auto;padding:34px 0 52px;display:grid;gap:20px}.hero,.panel,.metric,.card{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero{padding:30px;display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:end}.label{display:inline-flex;width:max-content;color:var(--accent);background:var(--accent-soft);padding:7px 10px;border-radius:999px;font-size:12px;font-weight:700}
+    h1,h2,h3,p{margin-top:0;letter-spacing:0}h1{margin:14px 0 12px;font-size:clamp(36px,5vw,62px);line-height:1.05}h2{font-size:24px}p,li{color:var(--muted);line-height:1.72}
+    .metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.metric{padding:16px;min-height:104px;display:grid;align-content:space-between}.metric span,.metric small{color:var(--muted);font-size:12px}.metric strong{font-size:23px}
+    .button-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.button{display:inline-flex;justify-content:center;align-items:center;min-height:44px;padding:0 16px;border-radius:8px;background:var(--ink);color:#fff;text-decoration:none;font-weight:700}.button.secondary{background:#fff;color:var(--ink);border:1px solid var(--line)}
+    .panel{padding:24px}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.card{padding:18px;min-width:0}.card h3{margin-bottom:8px}.card p{margin-bottom:0}
+    .step{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;margin-top:14px}.num{width:30px;height:30px;border-radius:50%;display:inline-grid;place-items:center;background:var(--accent-soft);color:var(--accent);font-weight:800}.note{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:16px}.mini{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:14px}.mini span{background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:9px;color:var(--muted);font-size:12px}.mini b{display:block;color:var(--ink);font-size:14px;margin-top:4px}
+    @media(max-width:920px){.hero,.grid-2,.grid-3{grid-template-columns:1fr}.metrics,.mini{grid-template-columns:1fr}.shell{width:min(100vw - 16px,1180px);padding-top:22px}.hero,.panel{padding:18px}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <span class="label">Yearly Trading Review</span>
+        <h1>年度交易复盘</h1>
+        <p>年度复盘不只看赚亏，更要回答：今年靠什么赚钱，因为什么亏钱，哪些规则真正进化成系统，下一年要用什么纪律保护账户。</p>
+        <div class="button-row">
+          <a class="button" href="../monthly-quarterly-trading-review/">月度 / 季度主页</a>
+          <a class="button secondary" href="../weekly-trading-review/">周度主页</a>
+          <a class="button secondary" href="../index.html">总首页</a>
+        </div>
+      </div>
+      <div class="metrics">
+        <article class="metric"><span>年度对象</span><strong>自然年</strong><small>汇总 12 个月与 4 个季度</small></article>
+        <article class="metric"><span>核心目标</span><strong>体系沉淀</strong><small>把经验变成规则</small></article>
+        <article class="metric"><span>当前状态</span><strong>框架版</strong><small>等待全年数据填充</small></article>
+        <article class="metric"><span>最终输出</span><strong>来年准则</strong><small>下一年盘前清单</small></article>
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <article class="panel">
+        <h2>年度复盘总结构</h2>
+        <div class="step"><span class="num">1</span><div><h3>账户画像</h3><p>年度收益率、总收益、最大回撤、最长回撤修复周期、盈利和亏损月份分布。</p></div></div>
+        <div class="step"><span class="num">2</span><div><h3>模式画像</h3><p>龙头主升、弱转强、分歧低吸、小题材、套利和空仓防守分别贡献了什么结果。</p></div></div>
+        <div class="step"><span class="num">3</span><div><h3>纪律画像</h3><p>哪些错误重复出现，哪些规则真正改善了账户曲线，哪些规则只是写在复盘里。</p></div></div>
+      </article>
+      <article class="panel">
+        <h2>年度关键问题</h2>
+        <ul>
+          <li>今年真正赚钱的是能力，还是行情馈赠。</li>
+          <li>最大亏损是否来自同一类错误。</li>
+          <li>重仓时是否只给了最强龙头，轻仓时是否保护了混沌期。</li>
+          <li>下一年必须砍掉哪类交易，必须强化哪类交易。</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>年度模块框架</h2>
+      <div class="grid-3">
+        <article class="card"><h3>账户收益</h3><p>年度总收益、月度分布、季度贡献、最大回撤和修复时间。</p><div class="mini"><span>收益率 <b>待填</b></span><span>最大回撤 <b>待填</b></span></div></article>
+        <article class="card"><h3>交易模式</h3><p>统计龙头、次强、小题材、补涨、套利、空仓等模式的收益质量。</p><div class="mini"><span>最佳模式 <b>待填</b></span><span>禁用模式 <b>待填</b></span></div></article>
+        <article class="card"><h3>仓位风控</h3><p>检查主升重仓、混沌小仓、退潮空仓的执行比例。</p><div class="mini"><span>重仓胜率 <b>待填</b></span><span>防守得分 <b>待填</b></span></div></article>
+        <article class="card"><h3>买卖点质量</h3><p>复盘竞价、开盘、板上、分歧低吸、尾盘离场等节点是否一致。</p><div class="mini"><span>最佳买点 <b>待填</b></span><span>最差卖点 <b>待填</b></span></div></article>
+        <article class="card"><h3>心理纪律</h3><p>记录恐慌卖出、冲动追高、踏空焦虑、扛亏幻想等行为出现频率。</p><div class="mini"><span>最大问题 <b>待填</b></span><span>改善动作 <b>待填</b></span></div></article>
+        <article class="card"><h3>来年准则</h3><p>沉淀下一年盘前、盘中、盘后必须执行的固定交易清单。</p><div class="mini"><span>保留 <b>待填</b></span><span>停止 <b>待填</b></span></div></article>
+      </div>
+    </section>
+
+    <section class="grid-3">
+      <article class="card">
+        <h3>需要的数据</h3>
+        <ul>
+          <li>全年每日收益表</li>
+          <li>每月账户总额</li>
+          <li>全年交割单汇总</li>
+          <li>月度 / 季度复盘结论</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>年度榜单</h3>
+        <ul>
+          <li>年度最佳交易</li>
+          <li>年度最大亏损</li>
+          <li>年度最该保留的规则</li>
+          <li>年度最该停止的动作</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>最终输出</h3>
+        <ul>
+          <li>下一年交易模式白名单</li>
+          <li>下一年交易模式黑名单</li>
+          <li>仓位分级标准</li>
+          <li>盘前检查清单</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>先定下年度复盘的基调</h2>
+      <div class="note">
+        <p>年度复盘最终要服务下一年的执行，而不是写成流水账。所有结论都要能落到一个动作：明年什么时候出手，什么时候空仓，什么时候重仓，什么时候必须认错离场。</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

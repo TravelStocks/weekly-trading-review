@@ -11,11 +11,11 @@
     .page{display:grid;gap:18px;min-width:0}.page>*{min-width:0}.hero,.panel,.metric,.stock-card,.day-card,.rule-card,.todo-card{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.hero{padding:28px;display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:stretch}.label{display:inline-flex;width:max-content;color:var(--accent);background:var(--accent-soft);padding:7px 10px;border-radius:999px;font-size:12px;font-weight:700}
     h1,h2,h3,p{margin-top:0;letter-spacing:0}h1{margin:14px 0 12px;font-size:clamp(34px,4vw,54px);line-height:1.06}h2{font-size:24px;margin-bottom:8px}p,li{color:var(--muted);line-height:1.72}.hero p{font-size:16px;max-width:820px}.hero-side{display:grid;gap:12px}.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.metric{padding:16px;min-height:112px;display:grid;align-content:space-between}.metric span,.metric small{color:var(--muted);font-size:12px;line-height:1.5}.metric strong{font-size:24px}.panel{padding:22px;overflow:hidden}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}.three-col{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.pos{color:var(--up)}.neg{color:var(--down)}.warn{color:var(--warn)}
     .section-note{margin:0 0 16px;color:var(--muted)}.takeaways{padding-left:20px}.bar-list{display:grid;gap:12px}.bar-meta{display:flex;justify-content:space-between;gap:12px;align-items:baseline}.bar-track{height:10px;background:var(--soft);border-radius:999px;overflow:hidden}.bar-track span{display:block;height:100%;border-radius:inherit;background:var(--up)}.bar-track span.neg{background:var(--down)}.bar-row p{margin:6px 0 0;font-size:12px}.mini-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.mini-grid span{background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:10px;color:var(--muted);font-size:13px;min-width:0}.mini-grid b{display:block;color:var(--ink);margin-top:4px;overflow-wrap:anywhere}
-    .day-list,.stock-grid,.rule-grid,.todo-grid{display:grid;gap:14px}.day-card,.stock-card,.rule-card,.todo-card{padding:18px}.day-head,.stock-top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.chip{display:inline-flex;padding:7px 10px;border-radius:999px;background:#eef2ff;color:#344054;font-size:12px;font-weight:700;white-space:nowrap}.chip.warn{background:#fff7ed;color:#9a3412}.chip.neg{background:#fef2f2;color:#991b1b}.chip.pos{background:#ecfdf3;color:#067647}
-    .source-lock{border-color:rgba(194,65,45,.28);background:linear-gradient(135deg,#fff8f6 0%,#fff 62%)}.source-lock strong{color:var(--accent)}.rule-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.rule-card h3{margin-bottom:8px}.todo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .day-list,.stock-grid,.rule-grid,.todo-grid,.kiss-grid{display:grid;gap:14px}.day-card,.stock-card,.rule-card,.todo-card,.kiss-card{padding:18px}.kiss-card,.raw-note{background:#f8fafc;border:1px solid var(--line);border-radius:10px}.day-head,.stock-top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.chip{display:inline-flex;padding:7px 10px;border-radius:999px;background:#eef2ff;color:#344054;font-size:12px;font-weight:700;white-space:nowrap}.chip.warn{background:#fff7ed;color:#9a3412}.chip.neg{background:#fef2f2;color:#991b1b}.chip.pos{background:#ecfdf3;color:#067647}
+    .source-lock{border-color:rgba(194,65,45,.28);background:linear-gradient(135deg,#fff8f6 0%,#fff 62%)}.source-lock strong{color:var(--accent)}.rule-grid,.kiss-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.rule-card h3,.kiss-card h3{margin-bottom:8px}.todo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.raw-note{margin-top:12px;padding:14px}.raw-note ul{margin:8px 0 0;padding-left:18px}.raw-note li{margin:4px 0}
     .trade-map{margin-top:16px;padding:14px;border:1px solid var(--line);border-radius:10px;background:#f8fafc;display:grid;gap:12px;min-width:0}.trade-map-head{display:flex;justify-content:space-between;gap:12px;align-items:center}.trade-map-head h4{margin:0;font-size:15px}.trade-legend{display:flex;flex-wrap:wrap;gap:8px;color:var(--muted);font-size:12px}.legend-item{display:inline-flex;align-items:center;gap:5px}.legend-shape{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent}.legend-shape.buy{border-bottom:11px solid var(--down)}.legend-shape.sell{border-top:11px solid var(--blue)}.trade-chart-wrap{width:100%;overflow:hidden}.trade-chart{width:100%;min-height:220px;display:block}.axis-label{fill:var(--muted);font-size:11px}.point-label{fill:var(--ink);font-size:11px;font-weight:700;paint-order:stroke;stroke:#fff;stroke-width:3px}.market-line{fill:none;stroke:#14956f;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.trade-context{display:grid;gap:6px;margin:0;padding-left:18px}.trade-context li{font-size:13px;line-height:1.55;color:var(--muted)}.trade-point-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.trade-point-item{display:flex;justify-content:space-between;gap:10px;align-items:center;min-height:40px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:12px;color:var(--muted);min-width:0}.trade-point-item span{min-width:0;overflow-wrap:anywhere}.trade-point-item strong{color:var(--ink);white-space:nowrap}.trade-point-item .buy{color:var(--down);font-weight:700}.trade-point-item .sell{color:var(--blue);font-weight:700}
     details{border:1px solid var(--line);border-radius:var(--radius);background:#fff;overflow:hidden;min-width:0}summary{cursor:pointer;padding:16px 18px;font-weight:700;min-height:48px}.table-wrap{width:100%;max-width:100%;overflow:auto;border-top:1px solid var(--line)}table{width:100%;border-collapse:collapse;min-width:1080px;font-size:13px}th,td{padding:10px 11px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}th{color:var(--muted);background:#f8fafc;position:sticky;top:0}td:nth-child(n+6),th:nth-child(n+6){text-align:right}.side-tag.buy{color:var(--down);font-weight:700}.side-tag.sell{color:var(--blue);font-weight:700}
-    @media(max-width:1120px){.shell{grid-template-columns:1fr}.side{position:static;grid-template-columns:repeat(3,minmax(0,1fr))}.side h2{grid-column:1/-1}.hero,.two-col,.three-col,.rule-grid,.todo-grid{grid-template-columns:1fr}}@media(max-width:720px){.shell{width:min(100vw - 16px,1480px)}.hero,.panel{padding:18px}.metric-grid,.mini-grid,.trade-point-list{grid-template-columns:1fr}.side{grid-template-columns:1fr}h1{font-size:34px}.trade-map{padding:12px}.day-head,.stock-top,.trade-map-head{flex-wrap:wrap}.trade-chart-wrap{overflow-x:auto}.trade-chart{width:760px;max-width:none;min-height:0}table{font-size:12px}}
+    @media(max-width:1120px){.shell{grid-template-columns:1fr}.side{position:static;grid-template-columns:repeat(3,minmax(0,1fr))}.side h2{grid-column:1/-1}.hero,.two-col,.three-col,.rule-grid,.kiss-grid,.todo-grid{grid-template-columns:1fr}}@media(max-width:720px){.shell{width:min(100vw - 16px,1480px)}.hero,.panel{padding:18px}.metric-grid,.mini-grid,.trade-point-list{grid-template-columns:1fr}.side{grid-template-columns:1fr}h1{font-size:34px}.trade-map{padding:12px}.day-head,.stock-top,.trade-map-head{flex-wrap:wrap}.trade-chart-wrap{overflow-x:auto}.trade-chart{width:760px;max-width:none;min-height:0}table{font-size:12px}}
   </style>
 </head>
 <body>
@@ -120,13 +120,13 @@
 
       <section class="panel" id="daily">
         <h2>逐日复盘</h2>
-        <p class="section-note">这一版只根据交割单做交易行为复盘，等你给操作&情绪后再补 KISS 和二次反思。</p>
+        <p class="section-note">已补入你给的 5 天操作&情绪复盘。这里保留当天核心结论，完整原文要点压缩在每张卡片的“操作&情绪”里。</p>
         <div class="day-list">
-          <article class="day-card"><div class="day-head"><div><h3>05/25 · 周一</h3><p>早盘卖出达实智能 4,200 股，尾盘买入京东方 A、圣阳股份。</p></div><span class="chip pos">达实兑现</span></div><p>达实这笔把上周留仓利润兑现出来，是当天最关键的正反馈；但尾盘又切入两个新标的，后续都没有贡献明显利润。</p></article>
-          <article class="day-card"><div class="day-head"><div><h3>05/26 · 周二</h3><p>早盘密集买入京能电力 2,200 股，同时卖出京东方 A。</p></div><span class="chip warn">分歧接入</span></div><p>京能买入非常集中，几乎都在早盘 7 分钟内完成。买得快、仓位成型快，后面如果题材不继续强化，容错会迅速下降。</p></article>
-          <article class="day-card"><div class="day-head"><div><h3>05/27 · 周三</h3><p>截图内无成交。</p></div><span class="chip">空白日</span></div><p>这一天需要后续账户收益和持仓变化来判断，是持仓等待、无机会，还是错过处理点。</p></article>
-          <article class="day-card"><div class="day-head"><div><h3>05/28 · 周四</h3><p>开盘卖出京能电力、圣阳股份，随后分批买入华能蒙电 3,300 股。</p></div><span class="chip neg">核心风险日</span></div><p>先处理旧仓，随后快速切到华能蒙电，并在早盘和午后继续加仓。这里很像“分歧刚来就接、还没进入混沌就继续出手”。</p></article>
-          <article class="day-card"><div class="day-head"><div><h3>05/29 · 周五</h3><p>早盘卖出华能蒙电 3,300 股。</p></div><span class="chip neg">被动止损</span></div><p>华能蒙电次日低位离场，成为本周最大亏损源。下周重点要复盘：5/28 当时是主升延续，还是退潮/分歧阶段追涨。</p></article>
+          <article class="day-card"><div class="day-head"><div><h3>05/25 · 周一</h3><p>早盘卖出达实智能 4,200 股，尾盘买入京东方 A、圣阳股份。</p></div><span class="chip pos">条件单兑现</span></div><p>账户 +1,187。达实智能下杀瞬间条件单自动卖出，不主观扛分歧；震荡市早盘不乱出手，尾盘才低吸核心龙，节奏正确。</p><div class="raw-note"><strong>操作&情绪要点</strong><ul><li>Keep：条件单知行合一、早盘不接力、尾盘吸核心、低吸 1-2 层仓。</li><li>Improve：达实止盈可小幅抬高 1-2%；京东方低吸更严格锚定水上水位。</li><li>Start：高位烂板必须转强确认，尾盘低吸绑定次日回流预期。</li><li>Stop：禁止无转强确认接力高位烂板，禁止震荡市早盘盲目接力。</li></ul></div></article>
+          <article class="day-card"><div class="day-head"><div><h3>05/26 · 周二</h3><p>早盘密集买入京能电力 2,200 股，同时卖出京东方 A。</p></div><span class="chip warn">修复先手但买点急</span></div><p>账户 -699。能从断板、连板、首板、腾落数判断情绪，也只看核心前排；问题在于京能电力冲高半路补得重，舒服买点应该在下杀或尾盘。</p><div class="raw-note"><strong>操作&情绪要点</strong><ul><li>Keep：同时看四条情绪线，只看核心前排和题材活口。</li><li>Improve：京东方 A 只要在均线上且逻辑未破，要多给时间；京能下杀多买、冲板半路少追。</li><li>Start：小退潮次日执行修复剧本，早盘接力只做确认，尾盘低吸只做核心。</li><li>Stop：停止卖飞均线上的修复预期票，停止核心票冲高半路补重仓。</li></ul></div></article>
+          <article class="day-card"><div class="day-head"><div><h3>05/27 · 周三</h3><p>截图内无成交，账户靠持仓修复。</p></div><span class="chip pos">持仓耐心兑现</span></div><p>账户 +1,108。条件单纪律和持股耐心做对了：止损放在真正走弱确认处，走强后再用止盈条件单保护利润。主要优化点是电力内部辨识度切换。</p><div class="raw-note"><strong>操作&情绪要点</strong><ul><li>Keep：下杀前设止损，走强后设止盈，有上板预期不急卖。</li><li>Improve：更敏感地识别华电能源、华电辽能、内蒙华电、京能电力谁在带队。</li><li>Start：电力内部每天先排序，核心票切换看主动性、带动性、监管空间。</li><li>Stop：停止只看手里票，忽略同题材更强票的身位变化。</li></ul></div></article>
+          <article class="day-card"><div class="day-head"><div><h3>05/28 · 周四</h3><p>开盘卖出京能电力、圣阳股份，随后分批买入华能蒙电 3,300 股。</p></div><span class="chip neg">亏损后加单</span></div><p>账户 -2,628.23，是本周最大亏损日。复盘重点很清楚：条件单只设当天有效；板块分歧时只做最强和第二强；亏损后停止加单，等待下一次预案机会。</p><div class="raw-note"><strong>操作&情绪要点</strong><ul><li>Keep：继续每天给题材排前二前三，用大盘、情绪、题材、个股四节奏确认。</li><li>Improve：条件单只设当天有效；板块分歧只做最强和第二强。</li><li>Start：每日盘前盘后检查条件单，建立题材核心票排序表。</li><li>Stop：停止碰后排票，停止亏损后加单，停止把板块回流理解成所有票都能做。</li></ul></div></article>
+          <article class="day-card"><div class="day-head"><div><h3>05/29 · 周五</h3><p>早盘卖出华能蒙电 3,300 股，收盘仓位 0%。</p></div><span class="chip neg">退潮空仓</span></div><p>账户 -330。当天最好的动作是卖出后不开新仓，承认电力仍是唯一穿越主线，但弱票处理要把“弱票判断”和“卖出时机”拆开，不能在板块抱团日情绪杀到最低。</p><div class="raw-note"><strong>操作&情绪要点</strong><ul><li>Keep：不恋战弱票，卖出后不开新仓，退潮期只看核心前排。</li><li>Improve：弱票也要按卖点卖，板块强时不急杀，个股破位再执行。</li><li>Start：弱票处理三步法：先看板块，再看均线，最后看主动性。</li><li>Stop：停止早盘下杀情绪卖，停止在板块抱团日把弱票卖在最低情绪点。</li></ul></div></article>
         </div>
       </section>
 
@@ -137,13 +137,24 @@
       </section>
 
       <section class="panel" id="rules">
-        <h2>本周规则初稿</h2>
-        <p class="section-note">这是 Codex 基于交割单的初版判断，后面用你的操作&情绪复盘校准。</p>
+        <h2>本周 KISS 总结</h2>
+        <p class="section-note">根据你给的 5 天操作&情绪复盘汇总。核心矛盾：交易执行有进步，但题材内部排序、亏损后加单、分歧期出手速度仍是回撤源头。</p>
+        <div class="kiss-grid">
+          <article class="kiss-card"><h3>Keep</h3><p>条件单纪律、早盘不乱接力、尾盘吸核心、只看核心前排、持仓有预期不急卖、退潮期卖出后不开新仓。</p></article>
+          <article class="kiss-card"><h3>Improve</h3><p>题材内部排序要更敏感；修复票在均线和逻辑未破时多给时间；弱票判断和卖出时机分开；条件单只设当天有效。</p></article>
+          <article class="kiss-card"><h3>Start</h3><p>每日盘前盘后检查条件单；建立题材前二前三排序表；执行“板块回流 + 个股弱转强 + 量能健康”三条件筛选。</p></article>
+          <article class="kiss-card"><h3>Stop</h3><p>停止亏损后加单，停止后排幻想，停止冲高半路补重仓，停止把板块回流理解成板块所有票都能做。</p></article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>本周执行铁律</h2>
+        <p class="section-note">这几条下周盘前可以直接贴在屏幕旁边。</p>
         <div class="rule-grid">
-          <article class="rule-card"><h3>Keep</h3><p>达实智能能在周一兑现上周留仓，没有把盈利票拖成亏损票，这个动作要保留。</p></article>
-          <article class="rule-card"><h3>Improve</h3><p>京能、华能两笔电力方向都在分歧中快速成仓，下一次要先确认承接再出手。</p></article>
-          <article class="rule-card"><h3>Start</h3><p>新开仓前先打标签：主升、分歧、混沌、退潮。不是主升就降低仓位和速度。</p></article>
-          <article class="rule-card"><h3>Stop</h3><p>停止在退潮或刚分歧阶段追涨加仓，尤其不要在没有确认修复前连续买满。</p></article>
+          <article class="rule-card"><h3>题材排序</h3><p>每天先排题材前二前三，板块分歧时只做最强和第二强，后排漏单也禁买。</p></article>
+          <article class="rule-card"><h3>买点纪律</h3><p>小退潮次日，高开防兑现，平开/小低开上拉才是舒服买点；错过下杀点不追半路重仓。</p></article>
+          <article class="rule-card"><h3>亏损处理</h3><p>亏损后停止加单，等待下一次预案机会；条件单只设当天有效，盘前盘后都要检查。</p></article>
+          <article class="rule-card"><h3>弱票三步</h3><p>弱票先看板块，再看均线，最后看主动性；板块抱团日不要把弱票卖在最低情绪点。</p></article>
         </div>
       </section>
 
@@ -159,7 +170,7 @@
         <h2>待补资料</h2>
         <div class="todo-grid">
           <article class="todo-card"><h3>账户表</h3><ul><li>每日收益、仓位和总金额已补入。</li><li>周五原始日期写作 2026/5/22，页面已按 2026/5/29 处理。</li></ul></article>
-          <article class="todo-card"><h3>复盘文字</h3><ul><li>每天操作&情绪复盘原文。</li><li>本周总反思、二次反思、下周规则。</li></ul></article>
+          <article class="todo-card"><h3>复盘文字</h3><ul><li>每日操作&情绪已补入。</li><li>本周总反思、二次反思、下周规则可继续补充成单独模块。</li></ul></article>
           <article class="todo-card"><h3>走势图升级</h3><ul><li>如果要真实分钟线，请给每只票分时图，或允许我继续用行情源补数据。</li><li>重点是华能蒙电、京能电力、达实智能三只。</li></ul></article>
           <article class="todo-card"><h3>成本确认</h3><ul><li>达实智能按 5/21 留仓 4,200 股回溯成本。</li><li>若券商成本算法不是这个口径，后续按你的持仓成本表重算。</li></ul></article>
         </div>

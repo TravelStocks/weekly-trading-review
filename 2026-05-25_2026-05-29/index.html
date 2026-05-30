@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026.05.25-2026.05.29 交割复盘</title>
+  <style>
+    :root{--bg:#f6f7f8;--panel:#fff;--ink:#1c2530;--muted:#667085;--line:#dfe4ea;--soft:#eef2f5;--accent:#c2412d;--accent-soft:#fff1ed;--up:#14845f;--down:#b4232f;--warn:#b76305;--blue:#1d4ed8;--shadow:0 18px 44px rgba(28,37,48,.08);--radius:12px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:linear-gradient(180deg,#f7f8fa 0%,#eef2f5 100%);font-family:"Avenir Next","PingFang SC","Noto Sans SC","Microsoft YaHei",Arial,sans-serif}a{color:inherit}
+    .shell{width:min(1480px,calc(100vw - 24px));margin:0 auto;padding:18px 0 48px;display:grid;grid-template-columns:248px minmax(0,1fr);gap:18px}.side{position:sticky;top:14px;align-self:start;background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;display:grid;gap:10px}.side h2{margin:0 0 4px;font-size:20px}.side a{text-decoration:none;padding:10px 12px;border-radius:8px;color:var(--muted);border:1px solid transparent;min-height:44px;display:flex;align-items:center}.side a:hover{color:var(--ink);background:var(--soft);border-color:var(--line)}
+    .page{display:grid;gap:18px;min-width:0}.page>*{min-width:0}.hero,.panel,.metric,.stock-card,.day-card,.rule-card,.todo-card{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.hero{padding:28px;display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:stretch}.label{display:inline-flex;width:max-content;color:var(--accent);background:var(--accent-soft);padding:7px 10px;border-radius:999px;font-size:12px;font-weight:700}
+    h1,h2,h3,p{margin-top:0;letter-spacing:0}h1{margin:14px 0 12px;font-size:clamp(34px,4vw,54px);line-height:1.06}h2{font-size:24px;margin-bottom:8px}p,li{color:var(--muted);line-height:1.72}.hero p{font-size:16px;max-width:820px}.hero-side{display:grid;gap:12px}.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.metric{padding:16px;min-height:112px;display:grid;align-content:space-between}.metric span,.metric small{color:var(--muted);font-size:12px;line-height:1.5}.metric strong{font-size:24px}.panel{padding:22px;overflow:hidden}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}.three-col{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.pos{color:var(--up)}.neg{color:var(--down)}.warn{color:var(--warn)}
+    .section-note{margin:0 0 16px;color:var(--muted)}.takeaways{padding-left:20px}.bar-list{display:grid;gap:12px}.bar-meta{display:flex;justify-content:space-between;gap:12px;align-items:baseline}.bar-track{height:10px;background:var(--soft);border-radius:999px;overflow:hidden}.bar-track span{display:block;height:100%;border-radius:inherit;background:var(--up)}.bar-track span.neg{background:var(--down)}.bar-row p{margin:6px 0 0;font-size:12px}.mini-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.mini-grid span{background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:10px;color:var(--muted);font-size:13px;min-width:0}.mini-grid b{display:block;color:var(--ink);margin-top:4px;overflow-wrap:anywhere}
+    .day-list,.stock-grid,.rule-grid,.todo-grid{display:grid;gap:14px}.day-card,.stock-card,.rule-card,.todo-card{padding:18px}.day-head,.stock-top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.chip{display:inline-flex;padding:7px 10px;border-radius:999px;background:#eef2ff;color:#344054;font-size:12px;font-weight:700;white-space:nowrap}.chip.warn{background:#fff7ed;color:#9a3412}.chip.neg{background:#fef2f2;color:#991b1b}.chip.pos{background:#ecfdf3;color:#067647}
+    .source-lock{border-color:rgba(194,65,45,.28);background:linear-gradient(135deg,#fff8f6 0%,#fff 62%)}.source-lock strong{color:var(--accent)}.rule-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.rule-card h3{margin-bottom:8px}.todo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .trade-map{margin-top:16px;padding:14px;border:1px solid var(--line);border-radius:10px;background:#f8fafc;display:grid;gap:12px;min-width:0}.trade-map-head{display:flex;justify-content:space-between;gap:12px;align-items:center}.trade-map-head h4{margin:0;font-size:15px}.trade-legend{display:flex;flex-wrap:wrap;gap:8px;color:var(--muted);font-size:12px}.legend-item{display:inline-flex;align-items:center;gap:5px}.legend-shape{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent}.legend-shape.buy{border-bottom:11px solid var(--down)}.legend-shape.sell{border-top:11px solid var(--blue)}.trade-chart-wrap{width:100%;overflow:hidden}.trade-chart{width:100%;min-height:220px;display:block}.axis-label{fill:var(--muted);font-size:11px}.point-label{fill:var(--ink);font-size:11px;font-weight:700;paint-order:stroke;stroke:#fff;stroke-width:3px}.market-line{fill:none;stroke:#14956f;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.trade-context{display:grid;gap:6px;margin:0;padding-left:18px}.trade-context li{font-size:13px;line-height:1.55;color:var(--muted)}.trade-point-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.trade-point-item{display:flex;justify-content:space-between;gap:10px;align-items:center;min-height:40px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:12px;color:var(--muted);min-width:0}.trade-point-item span{min-width:0;overflow-wrap:anywhere}.trade-point-item strong{color:var(--ink);white-space:nowrap}.trade-point-item .buy{color:var(--down);font-weight:700}.trade-point-item .sell{color:var(--blue);font-weight:700}
+    details{border:1px solid var(--line);border-radius:var(--radius);background:#fff;overflow:hidden;min-width:0}summary{cursor:pointer;padding:16px 18px;font-weight:700;min-height:48px}.table-wrap{width:100%;max-width:100%;overflow:auto;border-top:1px solid var(--line)}table{width:100%;border-collapse:collapse;min-width:1080px;font-size:13px}th,td{padding:10px 11px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}th{color:var(--muted);background:#f8fafc;position:sticky;top:0}td:nth-child(n+6),th:nth-child(n+6){text-align:right}.side-tag.buy{color:var(--down);font-weight:700}.side-tag.sell{color:var(--blue);font-weight:700}
+    @media(max-width:1120px){.shell{grid-template-columns:1fr}.side{position:static;grid-template-columns:repeat(3,minmax(0,1fr))}.side h2{grid-column:1/-1}.hero,.two-col,.three-col,.rule-grid,.todo-grid{grid-template-columns:1fr}}@media(max-width:720px){.shell{width:min(100vw - 16px,1480px)}.hero,.panel{padding:18px}.metric-grid,.mini-grid,.trade-point-list{grid-template-columns:1fr}.side{grid-template-columns:1fr}h1{font-size:34px}.trade-map{padding:12px}.day-head,.stock-top,.trade-map-head{flex-wrap:wrap}.trade-chart-wrap{overflow-x:auto}.trade-chart{width:760px;max-width:none;min-height:0}table{font-size:12px}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav class="side" aria-label="周复盘导航">
+      <h2>本周导航</h2>
+      <a href="../weekly-trading-review/">周度主页</a>
+      <a href="../index.html">总首页</a>
+      <a href="#top">本周总览</a>
+      <a href="#source">数据口径</a>
+      <a href="#account">账户口径</a>
+      <a href="#daily">逐日复盘</a>
+      <a href="#stocks">重点走势图</a>
+      <a href="#rules">规则初稿</a>
+      <a href="#trades">成交明细</a>
+      <a href="#todo">待补资料</a>
+    </nav>
+    <div class="page">
+      <section class="hero" id="top">
+        <div>
+          <span class="label">2026.05.25 - 2026.05.29</span>
+          <h1>达实兑现后，电力分歧接面拖回账户</h1>
+          <p>本页先按你截图里的交割单做成交版周复盘：本周有效成交为 5/25、5/26、5/28、5/29；5/21 的达实智能买入仅用于本周 5/25 卖出成本回溯。账户收益、仓位和操作&情绪复盘等你后续补资料后再校准。</p>
+        </div>
+        <div class="hero-side">
+          <article class="metric"><span>本周账户粗算</span><strong class="neg">-1,559.41</strong><small>按上周末 24,991.97 与截图期末资金 23,432.56 粗算，待每日账户表校准</small></article>
+          <article class="metric"><span>可核算闭环</span><strong class="neg">-1,445.06</strong><small>只用截图与上周留仓可核成本</small></article>
+          <article class="metric"><span>期末资金余额</span><strong>23,432.56</strong><small>截图最后一笔 5/29 卖出后资金余额</small></article>
+        </div>
+      </section>
+
+      <section class="metric-grid" aria-label="核心指标">
+        <article class="metric"><span>本周成交</span><strong>25 笔</strong><small>买入 20 / 卖出 5</small></article>
+        <article class="metric"><span>涉及标的</span><strong>5 只</strong><small>达实、京能、华能、圣阳、京东方</small></article>
+        <article class="metric"><span>成交额</span><strong>123,655.00</strong><small>买入 53,295 / 卖出 70,360</small></article>
+        <article class="metric"><span>费用税费</span><strong>160.18</strong><small>手续费 + 印花税</small></article>
+      </section>
+
+      <section class="panel source-lock" id="source">
+        <h2>数据口径先锁住</h2>
+        <p><strong>本周有效区间：</strong>2026/5/25 - 2026/5/29。截图筛选区间是 2026/5/21 - 2026/5/30，其中 5/21 的达实智能成交是上周留仓成本回溯，不重复算进本周成交笔数。</p>
+        <p class="section-note">本版不发布合同号、成交编号等敏感字段；成交明细只保留日期、时间、代码、名称、买卖、数量、价格、金额、费用、发生金额和市场。</p>
+      </section>
+
+      <section class="two-col">
+        <article class="panel">
+          <h2>一眼看懂</h2>
+          <ul class="takeaways">
+            <li>达实智能承接上周留仓，5/25 早盘卖出 4,200 股，按回溯成本可核算约 +1,166.23。</li>
+            <li>京能电力 5/26 早盘快速分批买入 2,200 股，5/28 早盘卖出，闭环约 -342.61。</li>
+            <li>圣阳股份和京东方 A 都是小额闭环，分别约 -196.33 和 -12.11，主要是弱势处理和费用损耗。</li>
+            <li>华能蒙电是本周最大拖累：5/28 早盘到午后分批买入 3,300 股，5/29 早盘卖出，闭环约 -2,060.24。</li>
+            <li>从成交结构看，本周主要亏损源头偏向“分歧接面”和“退潮追涨”：刚分歧就进、次日弱化后再被动离场。</li>
+          </ul>
+        </article>
+        <article class="panel" id="account">
+          <h2>账户收益口径</h2>
+          <p>这里先做粗算，不当成最终实盘成绩：上周页面 5/22 当前总金额为 24,991.97，本截图 5/29 最后一笔后资金余额为 23,432.56，差额 -1,559.41。</p>
+          <div class="mini-grid">
+            <span>上周末总额 <b>24,991.97</b></span>
+            <span>本周末余额 <b>23,432.56</b></span>
+            <span>粗算收益 <b class="neg">-1,559.41</b></span>
+            <span>待补 <b>每日收益 / 仓位</b></span>
+          </div>
+        </article>
+      </section>
+
+      <section class="two-col">
+        <article class="panel">
+          <h2>闭环贡献</h2>
+          <p class="section-note">达实智能成本来自 5/21 留仓回溯，其余标的均可由本周截图内买卖闭环核算。</p>
+          <div class="bar-list" id="pnl-bars"></div>
+        </article>
+        <article class="panel">
+          <h2>交易暴露</h2>
+          <div class="bar-list">
+            <div class="bar-row"><div class="bar-meta"><span>华能蒙电</span><strong>3,300 股</strong></div><div class="bar-track"><span class="neg" style="width:100%"></span></div><p>本周最大亏损源，买入均价约 7.147，卖出 6.540。</p></div>
+            <div class="bar-row"><div class="bar-meta"><span>达实智能</span><strong>4,200 股</strong></div><div class="bar-track"><span style="width:100%"></span></div><p>上周留仓本周兑现，单笔正贡献最大。</p></div>
+            <div class="bar-row"><div class="bar-meta"><span>京能电力</span><strong>2,200 股</strong></div><div class="bar-track"><span class="neg" style="width:66.7%"></span></div><p>买入节奏集中在 9:30-9:37，隔日开盘离场。</p></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel" id="daily">
+        <h2>逐日复盘</h2>
+        <p class="section-note">这一版只根据交割单做交易行为复盘，等你给操作&情绪后再补 KISS 和二次反思。</p>
+        <div class="day-list">
+          <article class="day-card"><div class="day-head"><div><h3>05/25 · 周一</h3><p>早盘卖出达实智能 4,200 股，尾盘买入京东方 A、圣阳股份。</p></div><span class="chip pos">达实兑现</span></div><p>达实这笔把上周留仓利润兑现出来，是当天最关键的正反馈；但尾盘又切入两个新标的，后续都没有贡献明显利润。</p></article>
+          <article class="day-card"><div class="day-head"><div><h3>05/26 · 周二</h3><p>早盘密集买入京能电力 2,200 股，同时卖出京东方 A。</p></div><span class="chip warn">分歧接入</span></div><p>京能买入非常集中，几乎都在早盘 7 分钟内完成。买得快、仓位成型快，后面如果题材不继续强化，容错会迅速下降。</p></article>
+          <article class="day-card"><div class="day-head"><div><h3>05/27 · 周三</h3><p>截图内无成交。</p></div><span class="chip">空白日</span></div><p>这一天需要后续账户收益和持仓变化来判断，是持仓等待、无机会，还是错过处理点。</p></article>
+          <article class="day-card"><div class="day-head"><div><h3>05/28 · 周四</h3><p>开盘卖出京能电力、圣阳股份，随后分批买入华能蒙电 3,300 股。</p></div><span class="chip neg">核心风险日</span></div><p>先处理旧仓，随后快速切到华能蒙电，并在早盘和午后继续加仓。这里很像“分歧刚来就接、还没进入混沌就继续出手”。</p></article>
+          <article class="day-card"><div class="day-head"><div><h3>05/29 · 周五</h3><p>早盘卖出华能蒙电 3,300 股。</p></div><span class="chip neg">被动止损</span></div><p>华能蒙电次日低位离场，成为本周最大亏损源。下周重点要复盘：5/28 当时是主升延续，还是退潮/分歧阶段追涨。</p></article>
+        </div>
+      </section>
+
+      <section class="panel" id="stocks">
+        <h2>重点走势图</h2>
+        <p class="section-note">当前图是“成交价路径图”：只标注截图中可确认的真实买卖点，不冒充完整分钟线。等你给分时截图或让我补行情源后，可以升级成真实分钟走势图。</p>
+        <div class="stock-grid" id="stock-grid"></div>
+      </section>
+
+      <section class="panel" id="rules">
+        <h2>本周规则初稿</h2>
+        <p class="section-note">这是 Codex 基于交割单的初版判断，后面用你的操作&情绪复盘校准。</p>
+        <div class="rule-grid">
+          <article class="rule-card"><h3>Keep</h3><p>达实智能能在周一兑现上周留仓，没有把盈利票拖成亏损票，这个动作要保留。</p></article>
+          <article class="rule-card"><h3>Improve</h3><p>京能、华能两笔电力方向都在分歧中快速成仓，下一次要先确认承接再出手。</p></article>
+          <article class="rule-card"><h3>Start</h3><p>新开仓前先打标签：主升、分歧、混沌、退潮。不是主升就降低仓位和速度。</p></article>
+          <article class="rule-card"><h3>Stop</h3><p>停止在退潮或刚分歧阶段追涨加仓，尤其不要在没有确认修复前连续买满。</p></article>
+        </div>
+      </section>
+
+      <section class="panel" id="trades">
+        <h2>成交明细</h2>
+        <details open>
+          <summary>展开 / 收起交割单明细（已隐藏合同号、成交编号等敏感字段）</summary>
+          <div class="table-wrap"><table><thead><tr><th>成交日期</th><th>成交时间</th><th>证券代码</th><th>证券名称</th><th>操作</th><th>成交数量</th><th>成交均价</th><th>成交金额</th><th>费用税费</th><th>发生金额</th><th>交易市场</th><th>交收日期</th></tr></thead><tbody id="trade-rows"></tbody></table></div>
+        </details>
+      </section>
+
+      <section class="panel" id="todo">
+        <h2>待补资料</h2>
+        <div class="todo-grid">
+          <article class="todo-card"><h3>账户表</h3><ul><li>5/25-5/29 每日收益率、收益金额、仓位、当前总金额。</li><li>确认 5/29 后是否完全空仓，是否有转入转出。</li></ul></article>
+          <article class="todo-card"><h3>复盘文字</h3><ul><li>每天操作&情绪复盘原文。</li><li>本周总反思、二次反思、下周规则。</li></ul></article>
+          <article class="todo-card"><h3>走势图升级</h3><ul><li>如果要真实分钟线，请给每只票分时图，或允许我继续用行情源补数据。</li><li>重点是华能蒙电、京能电力、达实智能三只。</li></ul></article>
+          <article class="todo-card"><h3>成本确认</h3><ul><li>达实智能按 5/21 留仓 4,200 股回溯成本。</li><li>若券商成本算法不是这个口径，后续按你的持仓成本表重算。</li></ul></article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const trades = [
+      {date:"2026-05-29",time:"09:30:39",code:"600863",name:"华能蒙电",side:"卖出",qty:3300,price:6.540,gross:21582.000,feeTax:15.790,net:21565.990,market:"沪A",settle:"20260529"},
+      {date:"2026-05-28",time:"14:05:19",code:"600863",name:"华能蒙电",side:"买入",qty:200,price:6.920,gross:1384.000,feeTax:5.000,net:-1389.010,market:"沪A",settle:"20260528"},
+      {date:"2026-05-28",time:"13:13:44",code:"600863",name:"华能蒙电",side:"买入",qty:300,price:7.000,gross:2100.000,feeTax:5.000,net:-2105.020,market:"沪A",settle:"20260528"},
+      {date:"2026-05-28",time:"13:13:27",code:"600863",name:"华能蒙电",side:"买入",qty:100,price:7.000,gross:700.000,feeTax:5.000,net:-705.010,market:"沪A",settle:"20260528"},
+      {date:"2026-05-28",time:"13:13:22",code:"600863",name:"华能蒙电",side:"买入",qty:100,price:7.000,gross:700.000,feeTax:5.000,net:-705.010,market:"沪A",settle:"20260528"},
+      {date:"2026-05-28",time:"09:39:56",code:"002580",name:"圣阳股份",side:"卖出",qty:200,price:23.300,gross:4660.000,feeTax:7.330,net:4652.670,market:"深A",settle:"20260528"},
+      {date:"2026-05-28",time:"09:34:40",code:"600863",name:"华能蒙电",side:"买入",qty:200,price:7.240,gross:1448.000,feeTax:5.000,net:-1453.010,market:"沪A",settle:"20260528"},
+      {date:"2026-05-28",time:"09:34:33",code:"600863",name:"华能蒙电",side:"买入",qty:300,price:7.230,gross:2169.000,feeTax:5.000,net:-2174.020,market:"沪A",settle:"20260528"},
+      {date:"2026-05-28",time:"09:34:24",code:"600863",name:"华能蒙电",side:"买入",qty:700,price:7.190,gross:5033.000,feeTax:5.000,net:-5038.050,market:"沪A",settle:"20260528"},
+      {date:"2026-05-28",time:"09:34:22",code:"600863",name:"华能蒙电",side:"买入",qty:1400,price:7.180,gross:10052.000,feeTax:5.000,net:-10057.100,market:"沪A",settle:"20260528"},
+      {date:"2026-05-28",time:"09:30:44",code:"600578",name:"京能电力",side:"卖出",qty:2200,price:9.260,gross:20372.000,feeTax:15.180,net:20356.610,market:"沪A",settle:"20260528"},
+      {date:"2026-05-26",time:"09:37:14",code:"600578",name:"京能电力",side:"买入",qty:200,price:9.700,gross:1940.000,feeTax:5.000,net:-1945.020,market:"沪A",settle:"20260526"},
+      {date:"2026-05-26",time:"09:36:35",code:"600578",name:"京能电力",side:"买入",qty:200,price:9.740,gross:1948.000,feeTax:5.000,net:-1953.020,market:"沪A",settle:"20260526"},
+      {date:"2026-05-26",time:"09:36:00",code:"000725",name:"京东方A",side:"卖出",qty:800,price:5.270,gross:4216.000,feeTax:7.110,net:4208.890,market:"深A",settle:"20260526"},
+      {date:"2026-05-26",time:"09:33:09",code:"600578",name:"京能电力",side:"买入",qty:100,price:9.600,gross:960.000,feeTax:5.000,net:-965.010,market:"沪A",settle:"20260526"},
+      {date:"2026-05-26",time:"09:33:00",code:"600578",name:"京能电力",side:"买入",qty:100,price:9.610,gross:961.000,feeTax:5.000,net:-966.010,market:"沪A",settle:"20260526"},
+      {date:"2026-05-26",time:"09:31:16",code:"600578",name:"京能电力",side:"买入",qty:100,price:9.300,gross:930.000,feeTax:5.000,net:-935.010,market:"沪A",settle:"20260526"},
+      {date:"2026-05-26",time:"09:31:11",code:"600578",name:"京能电力",side:"买入",qty:300,price:9.250,gross:2775.000,feeTax:5.000,net:-2780.030,market:"沪A",settle:"20260526"},
+      {date:"2026-05-26",time:"09:31:03",code:"600578",name:"京能电力",side:"买入",qty:500,price:9.260,gross:4630.000,feeTax:5.000,net:-4635.050,market:"沪A",settle:"20260526"},
+      {date:"2026-05-26",time:"09:30:58",code:"600578",name:"京能电力",side:"买入",qty:200,price:9.300,gross:1860.000,feeTax:5.000,net:-1865.020,market:"沪A",settle:"20260526"},
+      {date:"2026-05-26",time:"09:30:56",code:"600578",name:"京能电力",side:"买入",qty:500,price:9.300,gross:4650.000,feeTax:5.000,net:-4655.050,market:"沪A",settle:"20260526"},
+      {date:"2026-05-25",time:"15:00:00",code:"000725",name:"京东方A",side:"买入",qty:800,price:5.270,gross:4216.000,feeTax:5.000,net:-4221.000,market:"深A",settle:"20260525"},
+      {date:"2026-05-25",time:"14:56:08",code:"002580",name:"圣阳股份",side:"买入",qty:100,price:24.210,gross:2421.000,feeTax:5.000,net:-2426.000,market:"深A",settle:"20260525"},
+      {date:"2026-05-25",time:"14:55:49",code:"002580",name:"圣阳股份",side:"买入",qty:100,price:24.180,gross:2418.000,feeTax:5.000,net:-2423.000,market:"深A",settle:"20260525"},
+      {date:"2026-05-25",time:"09:36:57",code:"002421",name:"达实智能",side:"卖出",qty:4200,price:4.650,gross:19530.000,feeTax:14.770,net:19515.230,market:"深A",settle:"20260525"}
+    ];
+    const stockMeta = {
+      "002421":{pnl:1166.23, tag:"上周留仓兑现", note:"成本按 5/21 留仓 4,200 股回溯，周一早盘全部卖出。"},
+      "600578":{pnl:-342.61, tag:"早盘快速成仓", note:"5/26 开盘 7 分钟内买满 2,200 股，5/28 开盘离场。"},
+      "600863":{pnl:-2060.24, tag:"本周最大拖累", note:"5/28 分批买入 3,300 股，5/29 早盘低位卖出。"},
+      "002580":{pnl:-196.33, tag:"尾盘试错失败", note:"5/25 尾盘买入，5/28 早盘卖出，亏损主要来自价差和费用。"},
+      "000725":{pnl:-12.11, tag:"手续费损耗", note:"买卖价相同，最终亏在手续费和税费。"}
+    };
+    const fmt = n => Number(n).toLocaleString("zh-CN",{minimumFractionDigits:2,maximumFractionDigits:2});
+    const fmt3 = n => Number(n).toFixed(3);
+    const chronological = [...trades].sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+    const groups = [...new Map(chronological.map(t=>[t.code,{code:t.code,name:t.name,market:t.market.includes("深")?"深圳A股":"上海A股"}])).values()];
+
+    document.getElementById("trade-rows").innerHTML = trades.map(t => `<tr><td>${t.date}</td><td>${t.time}</td><td>${t.code}</td><td>${t.name}</td><td><span class="side-tag ${t.side==="买入"?"buy":"sell"}">${t.side}</span></td><td>${t.qty}</td><td>${fmt3(t.price)}</td><td>${fmt(t.gross)}</td><td>${fmt(t.feeTax)}</td><td class="${t.net>=0?"pos":"neg"}">${t.net>=0?"+":""}${fmt(t.net)}</td><td>${t.market}</td><td>${t.settle}</td></tr>`).join("");
+
+    const pnlOrder = groups.map(g => ({...g,...stockMeta[g.code]})).sort((a,b)=>Math.abs(b.pnl)-Math.abs(a.pnl));
+    const maxAbs = Math.max(...pnlOrder.map(x=>Math.abs(x.pnl)));
+    document.getElementById("pnl-bars").innerHTML = pnlOrder.map(x => `<div class="bar-row"><div class="bar-meta"><span>${x.name} ${x.code}</span><strong class="${x.pnl>=0?"pos":"neg"}">${x.pnl>=0?"+":""}${fmt(x.pnl)}</strong></div><div class="bar-track"><span class="${x.pnl<0?"neg":""}" style="width:${Math.max(10,Math.abs(x.pnl)/maxAbs*100).toFixed(1)}%"></span></div><p>${x.note}</p></div>`).join("");
+
+    function renderChart(stockTrades, code){
+      const points = stockTrades.map((t,i)=>({x: stockTrades.length===1 ? 464 : 52 + i*(824/(stockTrades.length-1)), y: 0, t}));
+      const prices = stockTrades.map(t=>t.price);
+      let min = Math.min(...prices), max = Math.max(...prices);
+      if (min === max) { min -= 0.08; max += 0.08; }
+      const pad = (max-min)*0.16; min -= pad; max += pad;
+      points.forEach(p => p.y = 252 - (p.t.price-min)/(max-min)*228);
+      const line = points.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
+      const fill = `M ${points.map(p => `${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(" L ")} L ${points.at(-1).x.toFixed(1)} 252 L ${points[0].x.toFixed(1)} 252 Z`;
+      const markers = points.map(p => {
+        const isBuy = p.t.side === "买入";
+        const path = isBuy ? `M ${p.x} ${p.y-13} L ${p.x-8} ${p.y+2} L ${p.x+8} ${p.y+2} Z` : `M ${p.x} ${p.y+13} L ${p.x-8} ${p.y-2} L ${p.x+8} ${p.y-2} Z`;
+        const labelY = isBuy ? p.y-17 : p.y+27;
+        return `<g><path d="${path}" fill="${isBuy?"#b4232f":"#1d4ed8"}" stroke="#fff" stroke-width="2"></path><text x="${p.x}" y="${labelY}" text-anchor="middle" class="point-label">${isBuy?"买":"卖"}</text><title>${p.t.name} ${p.t.code}｜${p.t.side} ${p.t.qty} 股｜${p.t.date.slice(5)} ${p.t.time}｜${fmt3(p.t.price)}</title></g>`;
+      }).join("");
+      const ticks = [max,(max+min)/2,min];
+      return `<svg class="trade-chart" viewBox="0 0 900 300" role="img" aria-label="${code} 成交价路径买卖点图"><defs><linearGradient id="fill-${code}" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="rgba(20,149,111,.22)"></stop><stop offset="100%" stop-color="rgba(20,149,111,.02)"></stop></linearGradient></defs><line x1="52" x2="52" y1="24" y2="252" stroke="rgba(28,37,48,.16)"></line><line x1="52" x2="876" y1="252" y2="252" stroke="rgba(28,37,48,.16)"></line>${ticks.map((v,i)=>{const y=24+i*114;return `<g><line x1="52" x2="876" y1="${y}" y2="${y}" stroke="rgba(28,37,48,.08)"></line><text x="42" y="${y+4}" text-anchor="end" class="axis-label">${v.toFixed(2)}</text></g>`}).join("")}<path d="${fill}" fill="url(#fill-${code})"></path><polyline points="${line}" class="market-line"></polyline>${markers}<text x="52" y="287" text-anchor="start" class="axis-label">${stockTrades[0].date.slice(5)} ${stockTrades[0].time}</text><text x="876" y="287" text-anchor="end" class="axis-label">${stockTrades.at(-1).date.slice(5)} ${stockTrades.at(-1).time}</text></svg>`;
+    }
+
+    document.getElementById("stock-grid").innerHTML = groups.map(g => {
+      const arr = chronological.filter(t=>t.code===g.code);
+      const buyQty = arr.filter(t=>t.side==="买入").reduce((s,t)=>s+t.qty,0);
+      const sellQty = arr.filter(t=>t.side==="卖出").reduce((s,t)=>s+t.qty,0);
+      const gross = arr.reduce((s,t)=>s+t.gross,0);
+      const meta = stockMeta[g.code];
+      const avgBuy = buyQty ? arr.filter(t=>t.side==="买入").reduce((s,t)=>s+t.gross,0)/buyQty : null;
+      const avgSell = sellQty ? arr.filter(t=>t.side==="卖出").reduce((s,t)=>s+t.gross,0)/sellQty : null;
+      return `<article class="stock-card"><div class="stock-top"><div><h3>${g.name}</h3><p>${g.code} · ${g.market}</p></div><span class="chip ${meta.pnl>=0?"pos":"neg"}">${meta.pnl>=0?"+":""}${fmt(meta.pnl)}</span></div><p>${meta.note}</p><div class="mini-grid"><span>买入 <b>${buyQty}</b></span><span>卖出 <b>${sellQty}</b></span><span>成交额 <b>${fmt(gross)}</b></span><span>标签 <b>${meta.tag}</b></span></div><div class="trade-map"><div class="trade-map-head"><h4>成交价路径与买卖点</h4><div class="trade-legend"><span class="legend-item"><i class="legend-shape buy"></i>买入</span><span class="legend-item"><i class="legend-shape sell"></i>卖出</span></div></div><ul class="trade-context"><li>图中只连接真实成交价，先用于复盘买卖节奏；完整分钟线待补。</li><li>${avgBuy ? `买入均价 ${avgBuy.toFixed(3)}；` : "本周无买入点，"}${avgSell ? `卖出均价 ${avgSell.toFixed(3)}。` : "本周无卖出点。"}</li><li>${meta.tag}：${meta.note}</li></ul><div class="trade-chart-wrap">${renderChart(arr,g.code)}</div><div class="trade-point-list">${arr.map(t=>`<div class="trade-point-item"><span><b class="${t.side==="买入"?"buy":"sell"}">${t.side}</b> ${t.date.slice(5)} ${t.time}</span><strong>${fmt3(t.price)} / ${t.qty} 股</strong></div>`).join("")}</div></div></article>`;
+    }).join("");
+  </script>
+</body>
+</html>
